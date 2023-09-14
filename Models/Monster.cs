@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CampaignGUI.Models
 {
-    class Monster
+    public class Monster
     {
     }
 }

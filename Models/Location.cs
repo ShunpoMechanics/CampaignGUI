@@ -10,7 +10,8 @@ namespace CampaignGUI.Models
     public class Location
     {
         public string Name { get; set; }
-        public People[] Inhabitants { get; set; }
+        public List<People> Inhabitants { get; set; }
+        public Tuple<int, int> Coordinates { get; set; }
         public Image Map { get; set; }
     }
 }

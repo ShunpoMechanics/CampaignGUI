@@ -13,6 +13,7 @@ namespace CampaignGUI.Models
         public string PrerequisiteQuest { get; set; }
         public string LocationName { get; set; }
         public string Description { get; set; }
-        public People[] PeopleInvolved { get; set; }
+        public List<People> PeopleInvolved { get; set; }
+        public List<Monster> Monsters { get; set; }
      }
 }
