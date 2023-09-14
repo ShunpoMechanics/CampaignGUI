@@ -31,7 +31,7 @@ namespace CampaignGUI.Forms.MainMenu
                 if(!Directory.Exists(path))
                     Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI/Campaigns"));
 
-                Utils.SaveFile(campaign, Path.Combine(path, campaignName + ".txt"));
+                Utils.SaveFile(ref campaign, Path.Combine(path, campaignName + ".txt"));
 
                 CampaignDisplay display = new CampaignDisplay(campaign, campaignName+".txt");
                 this.Hide();

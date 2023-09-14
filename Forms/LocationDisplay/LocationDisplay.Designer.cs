@@ -29,21 +29,24 @@ namespace CampaignGUI.Forms.LocationDisplay
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.image1 = new System.Windows.Forms.PictureBox();
             this.locationNameLabel = new System.Windows.Forms.Label();
             this.locationNameValue = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.upload = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.image1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // image1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(170, 23);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(607, 390);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.image1.Location = new System.Drawing.Point(170, 23);
+            this.image1.Name = "image1";
+            this.image1.Size = new System.Drawing.Size(607, 390);
+            this.image1.TabIndex = 0;
+            this.image1.TabStop = false;
+            this.image1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // locationNameLabel
             // 
@@ -79,22 +82,44 @@ namespace CampaignGUI.Forms.LocationDisplay
             this.label1.TabIndex = 4;
             this.label1.Text = "label1";
             // 
+            // upload
+            // 
+            this.upload.Location = new System.Drawing.Point(25, 341);
+            this.upload.Name = "upload";
+            this.upload.Size = new System.Drawing.Size(121, 23);
+            this.upload.TabIndex = 5;
+            this.upload.Text = "Upload Map";
+            this.upload.UseVisualStyleBackColor = true;
+            this.upload.Click += new System.EventHandler(this.upload_Click);
+            // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(25, 383);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(121, 23);
+            this.save.TabIndex = 6;
+            this.save.Text = "Save";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
             // LocationDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.save);
+            this.Controls.Add(this.upload);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.locationNameValue);
             this.Controls.Add(this.locationNameLabel);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.image1);
             this.Name = "LocationDisplay";
             this.Text = "LocationDisplay";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LocationDisplay_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.LocationDisplay_Load);
             this.Enter += new System.EventHandler(this.LocationDisplay_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.image1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,10 +127,12 @@ namespace CampaignGUI.Forms.LocationDisplay
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox image1;
         private System.Windows.Forms.Label locationNameLabel;
         private System.Windows.Forms.TextBox locationNameValue;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button upload;
+        private System.Windows.Forms.Button save;
     }
 }

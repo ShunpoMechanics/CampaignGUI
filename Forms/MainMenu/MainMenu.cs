@@ -26,7 +26,7 @@ namespace CampaignGUI.Forms.MainMenu
 
         private void newCampaign_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Hide();            
             NewCampaign newCampaign = new NewCampaign();
             newCampaign.ShowDialog();
         }
@@ -55,8 +55,11 @@ namespace CampaignGUI.Forms.MainMenu
 
                     Campaign campaign = Campaign.FromFile(content);
                     CampaignDisplay display = new CampaignDisplay(campaign, campaign.Name + ".txt");
+                    Utils.SaveLastOpened(campaign.Name);
                     this.Hide();
                     display.ShowDialog();
+                    fs.Dispose();
+                    fs.Close();
                 }
             }
         }

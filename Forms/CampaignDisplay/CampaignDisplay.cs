@@ -1,5 +1,6 @@
 ﻿using CampaignGUI.Forms.LocationDisplay;
 using CampaignGUI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,13 +23,39 @@ namespace CampaignGUI
             InitializeComponent();
             Campaign = campaign;
             FileName = filename;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             campaignNameValue.Text = Campaign.Name;
-            Utils.ResizeDialogToImage(this, image1, Campaign.Map);
+            Utils.SaveLastOpened(Campaign.Name);
+            if (Campaign.Map != null)
+                Utils.ResizeDialogToImage(this, image1, Campaign.Map);
             image1.Image = Campaign.Map;
+            var directory = Path.Combine(Utils.GetDocumentsPath(), Campaign.Name);
+
+            if (!Directory.Exists(Path.Combine(FileName, $"{directory}\\Locations")))
+                Directory.CreateDirectory(Path.Combine(FileName, $"{directory}\\Locations"));
+            // Get Locations
+            foreach (string folder in Directory.EnumerateDirectories($"{directory}\\Locations").ToList())
+            {
+                foreach (string file in Directory.EnumerateFiles(folder, "*.txt"))
+                {
+                    string contents = File.ReadAllText(file);
+                    var location = CampaignGUI.Models.Location.FromFile(contents);
+                    Campaign.Locations.Add(location);
+                    // Add label to map
+                    var offsetX = image1.Location.X;
+                    var offsetY = image1.Location.Y;
+                    Tuple<int, int> tuple = Tuple.Create(location.Coordinates.Item1 + offsetX, location.Coordinates.Item2 + offsetY);
+                    location.Coordinates = tuple;
+
+                    Label label = Utils.CreateLabel(location, this);
+                    this.Controls.Add(label);
+                    label.BringToFront();                    
+                }
+            }
         }
 
         private void campaignNamValue_TextChanged(object sender, EventArgs a)
@@ -109,8 +136,8 @@ namespace CampaignGUI
                 if (confirmSave == DialogResult.Yes)
                 {
                     string path = Path.Combine(Utils.GetDocumentsPath(), FileName);
-
-                    Utils.SaveFile(Campaign, path);
+                    var obj = Campaign;
+                    Utils.SaveFile(ref obj, path);
                 }
                 else
                 {

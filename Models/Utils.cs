@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -19,19 +20,22 @@ namespace CampaignGUI.Models
 
         public static string GetMapPath()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI\\Campaigns\\Map");
+            string campaignName = GetLastOpened();
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"CampaignGUI\\Campaigns\\{campaignName}\\Map");
             return path;
         }
 
         public static string GetMonstersPath()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI\\Campaigns\\Monsters");
+            string campaignName = GetLastOpened();
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"CampaignGUI\\Campaigns\\{campaignName}\\Monsters");
             return path;
         }
 
         public static string GetPeoplePath()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI\\Campaigns\\People");
+            string campaignName = GetLastOpened();
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"CampaignGUI\\Campaigns\\{campaignName}\\People");
             return path;
         }
 
@@ -42,27 +46,66 @@ namespace CampaignGUI.Models
             form.Size = new Size(image.Width + 300, image.Height + 100);
         }
 
-        public static void SaveFile(Campaign campaign, string fullPath)
+        public static void SaveLastOpened(string campaignName)
         {
-            //bool exists = File.Exists(fullPath);
-            //if(exists)
-            //{
-            //    using (FileStream fs = File.OpenWrite(fullPath))
-            //    {
-            //        var bytes = Encoding.ASCII.GetBytes(campaign.ToFile());
-            //        fs.Write(bytes, 0, bytes.Length);
-            //        fs.Close();
-            //    };
-            //}
-            //else
-            //{
-            using (FileStream fs = File.Create(fullPath))
+            if (File.Exists($"{GetDocumentsPath()}\\lastOpenedSave.txt"))
             {
-                var bytes = Encoding.ASCII.GetBytes(campaign.ToFile());
+                File.Delete($"{GetDocumentsPath()}\\lastOpenedSave.txt");
+            }
+            using (FileStream fs = File.Create($"{GetDocumentsPath()}\\lastOpenedSave.txt"))
+            {
+                var bytes = Encoding.ASCII.GetBytes(campaignName);
                 fs.Write(bytes, 0, bytes.Length);
                 fs.Close();
-            };
-            //}           
+                fs.Dispose();
+            }
+        }
+
+        public static string GetLastOpened()
+        {
+            string result = "";
+            using (FileStream fs = File.OpenRead($"{GetDocumentsPath()}\\lastOpenedSave.txt"))
+            {
+                byte[] bytes = new byte[fs.Length];
+                fs.Read(bytes, 0, (int)fs.Length);
+                result = Encoding.ASCII.GetString(bytes);
+                fs.Close();
+                fs.Dispose();
+            }
+
+            return result;
+        }
+
+        public static Label CreateLabel(Location location, Form form)
+        {
+            Label namelabel = new Label();
+            namelabel.Location = new Point(location.Coordinates.Item1,location.Coordinates.Item2);
+            namelabel.Text = location.Name; 
+            namelabel.AutoSize = true;
+            return namelabel;
+        }
+
+        public static void SaveFile<T>(ref T file, string fullPath)
+        {
+            var exists = Directory.Exists(fullPath);
+            if (!exists)
+            {
+                using (FileStream fs = File.Create(fullPath))
+                {
+                    var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
+                    fs.Write(bytes, 0, bytes.Length);
+                    fs.Close();
+                };
+            }
+            else
+            {
+                using (FileStream fs = File.OpenWrite(fullPath))
+                {
+                    var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
+                    fs.Write(bytes, 0, bytes.Length);
+                    fs.Close();
+                };
+            }
         }
 
         public static void CopyUploadedImage(string originalFilePath, string localFilePath, string filename)
@@ -102,4 +145,5 @@ namespace CampaignGUI.Models
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
+
 }

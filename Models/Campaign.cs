@@ -16,11 +16,24 @@ namespace CampaignGUI.Models
         public List<Quest> Quests { get; set; }
         public List<Monster> MonsterLibrary { get; set; }
         //[JsonConverter(typeof(ImageConverter))]
+        [JsonIgnore]
         public Image Map { get; set; }
+        public Campaign()
+        {
+            Locations = new List<Location>();
+            Quests = new List<Quest>();
+            MonsterLibrary = new List<Monster>();
+        }
 
         public static Campaign FromFile(string content)
         {
-            Campaign campaign = JsonConvert.DeserializeObject<Campaign>(content);            
+            Campaign campaign = JsonConvert.DeserializeObject<Campaign>(content);       
+            if(campaign.Locations == null)
+                campaign.Locations = new List<Location>();
+            if (campaign.Quests == null)
+                campaign.Quests = new List<Quest>();
+            if (campaign.MonsterLibrary == null)
+                campaign.MonsterLibrary = new List<Monster>();
             Image image;
             using (var bmpTemp = new Bitmap(Path.Combine(Utils.GetMapPath(), "map.jpg")))
             {
