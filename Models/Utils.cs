@@ -34,6 +34,13 @@ namespace CampaignGUI.Models
             return path;
         }
 
+        public static string GetLocationsPath()
+        {
+            string campaignName = GetLastOpened();
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"CampaignGUI\\Campaigns\\{campaignName}\\Locations");
+            return path;
+        }
+
         public static string GetPeoplePath()
         {
             string campaignName = GetLastOpened();
@@ -110,6 +117,20 @@ namespace CampaignGUI.Models
                         fs.Close();
                     };
                 }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+        public static int DeleteFile<T>(ref T file, string fullPath)
+        {
+            try
+            {
+                var exists = Directory.Exists(fullPath);
+                Directory.Delete(fullPath, true);
                 return 0;
             }
             catch (Exception ex)

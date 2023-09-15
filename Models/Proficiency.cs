@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CampaignGUI.Models
 {
-    public class Monster : Creature
+    public class Proficiency
     {
+        public string Name { get; set; }
+        public bool Proficient { get; set; }
+        public string Stat { get; set; }
     }
 }

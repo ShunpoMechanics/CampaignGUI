@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CampaignGUI.Models
 {
-    public class Monster : Creature
+    public class Stat
     {
+        public string Name { get; set; }
+        public string Acroynm { get; set; }
     }
 }

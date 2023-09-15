@@ -15,6 +15,7 @@ namespace CampaignGUI.Models
         public List<Location> Locations { get; set; }
         public List<Quest> Quests { get; set; }
         public List<Monster> MonsterLibrary { get; set; }
+        public List<People> PeopleLibrary { get; set; }
         //[JsonConverter(typeof(ImageConverter))]
         [JsonIgnore]
         public Image Map { get; set; }
@@ -34,6 +35,8 @@ namespace CampaignGUI.Models
                 campaign.Quests = new List<Quest>();
             if (campaign.MonsterLibrary == null)
                 campaign.MonsterLibrary = new List<Monster>();
+            if (campaign.PeopleLibrary == null)
+                campaign.PeopleLibrary = new List<People>();
             Image image;
             using (var bmpTemp = new Bitmap(Path.Combine(Utils.GetMapPath(), "map.jpg")))
             {

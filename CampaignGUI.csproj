@@ -55,6 +55,18 @@
     <Compile Include="Forms\CampaignDisplay\CampaignDisplay.Designer.cs">
       <DependentUpon>CampaignDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ItemLibrary\ItemLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemLibrary\ItemLibrary.Designer.cs">
+      <DependentUpon>ItemLibrary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PeopleLibrary\PeopleLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PeopleLibrary\PeopleLibrary.Designer.cs">
+      <DependentUpon>PeopleLibrary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LocationDisplay\LocationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,17 +85,51 @@
     <Compile Include="Forms\MainMenu\NewCampaign.Designer.cs">
       <DependentUpon>NewCampaign.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MonsterLibrary\MonsterLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MonsterLibrary\MonsterLibrary.Designer.cs">
+      <DependentUpon>MonsterLibrary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PersonEditor\PersonEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PersonEditor\PersonEditor.Designer.cs">
+      <DependentUpon>PersonEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QuestLibrary\QuestLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QuestLibrary\QuestLibrary.Designer.cs">
+      <DependentUpon>QuestLibrary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Relationships\Relationships.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Relationships\Relationships.Designer.cs">
+      <DependentUpon>Relationships.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\ClassResource.cs" />
+    <Compile Include="Models\Creature.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\People.cs" />
+    <Compile Include="Models\Proficiency.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\Relationship.cs" />
+    <Compile Include="Models\Stat.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\CampaignDisplay\CampaignDisplay.resx">
       <DependentUpon>CampaignDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemLibrary\ItemLibrary.resx">
+      <DependentUpon>ItemLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PeopleLibrary\PeopleLibrary.resx">
+      <DependentUpon>PeopleLibrary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LocationDisplay\LocationDisplay.resx">
       <DependentUpon>LocationDisplay.cs</DependentUpon>
@@ -93,6 +139,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu\NewCampaign.resx">
       <DependentUpon>NewCampaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MonsterLibrary\MonsterLibrary.resx">
+      <DependentUpon>MonsterLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PersonEditor\PersonEditor.resx">
+      <DependentUpon>PersonEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QuestLibrary\QuestLibrary.resx">
+      <DependentUpon>QuestLibrary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,5 +172,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

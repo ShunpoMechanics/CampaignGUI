@@ -1,17 +1,51 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CampaignGUI.Models
 {
-    public class People
+    public class People: Creature
     {
-        public string Name { get; set; }
-        public string Photo { get; set; }
-        public string Title { get; set; }
-        public Relationship[] Relationships{ get; set; }
-        
+        public int ProficiencyBonus { get; set; }
+        public Guid Id { get; set; }
+        public People()
+        {
+            Id = Guid.NewGuid();
+            Proficiencies = new List<Proficiency>();
+            Relationships = new List<Relationship>();
+            Quests = new List<Quest>();
+        }
+        public static People FromFile(string content)
+        {
+            People person = JsonConvert.DeserializeObject<People>(content);
+            Image image;
+
+            string path = Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"People\\{person.Id}", "photo1.jpg");
+
+            if (File.Exists(Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"People\\{person.Id}", "photo1.jpg")))
+            {
+                using (var bmpTemp = new Bitmap(path))
+                {
+                    image = new Bitmap(bmpTemp);
+                }
+                person.Photo = image;
+            }
+            if (File.Exists(Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"People\\{person.Id}", "photo2.jpg")))
+            { 
+                path = Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"People\\{person.Id}", "photo2.jpg");
+                using (var bmpTemp = new Bitmap(path))
+                {
+                    image = new Bitmap(bmpTemp);
+                }
+                person.SecondPhoto = image;
+            }
+            return person;
+        }
+
     }
 }

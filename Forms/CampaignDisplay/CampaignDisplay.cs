@@ -1,4 +1,8 @@
-﻿using CampaignGUI.Forms.LocationDisplay;
+﻿using CampaignGUI.Forms.ItemLibrary;
+using CampaignGUI.Forms.LocationDisplay;
+using CampaignGUI.Forms.MonsterLibrary;
+using CampaignGUI.Forms.PeopleLibrary;
+using CampaignGUI.Forms.QuestLibrary;
 using CampaignGUI.Models;
 using Newtonsoft.Json;
 using System;
@@ -36,8 +40,12 @@ namespace CampaignGUI
             image1.Image = Campaign.Map;
             var directory = Path.Combine(Utils.GetDocumentsPath(), Campaign.Name);
 
-            if (!Directory.Exists(Path.Combine(FileName, $"{directory}\\Locations")))
-                Directory.CreateDirectory(Path.Combine(FileName, $"{directory}\\Locations"));
+            if (!Directory.Exists(Utils.GetLocationsPath()))
+                Directory.CreateDirectory(Utils.GetLocationsPath());
+            if (!Directory.Exists(Utils.GetPeoplePath()))
+                Directory.CreateDirectory(Utils.GetPeoplePath());
+            if (!Directory.Exists(Utils.GetMonstersPath()))
+                Directory.CreateDirectory(Utils.GetMonstersPath());
             // Get Locations
             foreach (string folder in Directory.EnumerateDirectories($"{directory}\\Locations").ToList())
             {
@@ -52,6 +60,17 @@ namespace CampaignGUI
                     Controls.Add(label);
                     label.BringToFront();
                     label.Click += new EventHandler(LocationClick);
+                }
+            }
+            
+            // Get People
+            foreach (string folder in Directory.EnumerateDirectories($"{directory}\\People").ToList())
+            {
+                foreach (string file in Directory.EnumerateFiles(folder, "*.txt"))
+                {
+                    string contents = File.ReadAllText(file);
+                    var person = People.FromFile(contents);
+                    Campaign.PeopleLibrary.Add(person);                    
                 }
             }
         }
@@ -172,6 +191,35 @@ namespace CampaignGUI
             {
                 MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void peopleLibrary_Click(object sender, EventArgs e)
+        {
+            PeopleLibrary pl = new PeopleLibrary(this);
+            pl.Show();
+        }
+
+        private void monsterLibrary_Click(object sender, EventArgs e)
+        {
+            MonsterLibrary pl = new MonsterLibrary(this);
+            pl.Show();
+        }
+
+        private void itemLibrary_Click(object sender, EventArgs e)
+        {
+            ItemLibrary pl = new ItemLibrary(this);
+            pl.Show();
+        }
+
+        private void questLibrary_Click(object sender, EventArgs e)
+        {
+            QuestLibrary pl = new QuestLibrary(this);
+            pl.Show();
+        }
+
+        public Campaign GetCampaign()
+        {
+            return Campaign;
         }
     }
 }

@@ -35,6 +35,10 @@ namespace CampaignGUI
             this.campaignNameValue = new System.Windows.Forms.TextBox();
             this.save = new System.Windows.Forms.Button();
             this.upscale = new System.Windows.Forms.CheckBox();
+            this.peopleLibrary = new System.Windows.Forms.Button();
+            this.monsterLibrary = new System.Windows.Forms.Button();
+            this.itemLibrary = new System.Windows.Forms.Button();
+            this.questLibrary = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.image1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +74,7 @@ namespace CampaignGUI
             // 
             this.campaignNameValue.Location = new System.Drawing.Point(12, 118);
             this.campaignNameValue.Name = "campaignNameValue";
-            this.campaignNameValue.Size = new System.Drawing.Size(165, 20);
+            this.campaignNameValue.Size = new System.Drawing.Size(200, 20);
             this.campaignNameValue.TabIndex = 3;
             this.campaignNameValue.TextChanged += new System.EventHandler(this.campaignNamValue_TextChanged);
             this.campaignNameValue.Leave += new System.EventHandler(this.campaignNamValue_TextChanged);
@@ -88,18 +92,62 @@ namespace CampaignGUI
             // upscale
             // 
             this.upscale.AutoSize = true;
-            this.upscale.Location = new System.Drawing.Point(12, 63);
+            this.upscale.Location = new System.Drawing.Point(15, 63);
             this.upscale.Name = "upscale";
             this.upscale.Size = new System.Drawing.Size(71, 17);
             this.upscale.TabIndex = 5;
             this.upscale.Text = "Upscale?";
             this.upscale.UseVisualStyleBackColor = true;
             // 
+            // peopleLibrary
+            // 
+            this.peopleLibrary.Location = new System.Drawing.Point(12, 171);
+            this.peopleLibrary.Name = "peopleLibrary";
+            this.peopleLibrary.Size = new System.Drawing.Size(98, 23);
+            this.peopleLibrary.TabIndex = 6;
+            this.peopleLibrary.Text = "People Library";
+            this.peopleLibrary.UseVisualStyleBackColor = true;
+            this.peopleLibrary.Click += new System.EventHandler(this.peopleLibrary_Click);
+            // 
+            // monsterLibrary
+            // 
+            this.monsterLibrary.Location = new System.Drawing.Point(116, 171);
+            this.monsterLibrary.Name = "monsterLibrary";
+            this.monsterLibrary.Size = new System.Drawing.Size(96, 23);
+            this.monsterLibrary.TabIndex = 7;
+            this.monsterLibrary.Text = "Monster Library";
+            this.monsterLibrary.UseVisualStyleBackColor = true;
+            this.monsterLibrary.Click += new System.EventHandler(this.monsterLibrary_Click);
+            // 
+            // itemLibrary
+            // 
+            this.itemLibrary.Location = new System.Drawing.Point(12, 200);
+            this.itemLibrary.Name = "itemLibrary";
+            this.itemLibrary.Size = new System.Drawing.Size(98, 23);
+            this.itemLibrary.TabIndex = 8;
+            this.itemLibrary.Text = "Item Library";
+            this.itemLibrary.UseVisualStyleBackColor = true;
+            this.itemLibrary.Click += new System.EventHandler(this.itemLibrary_Click);
+            // 
+            // questLibrary
+            // 
+            this.questLibrary.Location = new System.Drawing.Point(116, 200);
+            this.questLibrary.Name = "questLibrary";
+            this.questLibrary.Size = new System.Drawing.Size(96, 23);
+            this.questLibrary.TabIndex = 9;
+            this.questLibrary.Text = "Quest Library";
+            this.questLibrary.UseVisualStyleBackColor = true;
+            this.questLibrary.Click += new System.EventHandler(this.questLibrary_Click);
+            // 
             // CampaignDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1625, 608);
+            this.Controls.Add(this.questLibrary);
+            this.Controls.Add(this.itemLibrary);
+            this.Controls.Add(this.monsterLibrary);
+            this.Controls.Add(this.peopleLibrary);
             this.Controls.Add(this.upscale);
             this.Controls.Add(this.save);
             this.Controls.Add(this.campaignNameValue);
@@ -123,6 +171,10 @@ namespace CampaignGUI
         private System.Windows.Forms.TextBox campaignNameValue;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.CheckBox upscale;
+        private System.Windows.Forms.Button peopleLibrary;
+        private System.Windows.Forms.Button monsterLibrary;
+        private System.Windows.Forms.Button itemLibrary;
+        private System.Windows.Forms.Button questLibrary;
     }
 }
 
