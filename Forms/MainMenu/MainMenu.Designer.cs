@@ -72,7 +72,7 @@ namespace CampaignGUI.Forms.MainMenu
             this.Controls.Add(this.loadCampaign);
             this.Controls.Add(this.newCampaign);
             this.Name = "MainMenu";
-            this.Text = "MainMenu";
+            this.Text = "Main Menu";
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
 

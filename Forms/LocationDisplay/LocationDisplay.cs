@@ -17,22 +17,44 @@ namespace CampaignGUI.Forms.LocationDisplay
         public Location LocationObj { get; set; }
         public string Filepath { get; set; }
         public string MapPath { get; set; }
+        public CampaignDisplay CampaignDisplay { get; set; }
         public LocationDisplay()
         {
             InitializeComponent();
         }
 
-        public LocationDisplay(Location location)
+        public LocationDisplay(Location location, CampaignDisplay campaignDisplay)
         {
             InitializeComponent();
             LocationObj = location;
+            CampaignDisplay = campaignDisplay;
         }
 
         private void LocationDisplay_Load(object sender, EventArgs e)
         {
-            locationNameValue.Text = LocationObj.Name;
-            MapPath = Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"Locations\\{LocationObj.Name}");
-            Filepath = Path.Combine(MapPath, $"{LocationObj.Name}.txt");
+            try
+            {
+                locationNameValue.Text = LocationObj.Name;
+                MapPath = Path.Combine(Utils.GetDocumentsPath(), Utils.GetLastOpened(), $"Locations\\{LocationObj.Name}");
+                if (MapPath != null)
+                {
+                    image1.ImageLocation = $"{MapPath}\\map.jpg";
+                    if (File.Exists(image1.ImageLocation))
+                    {
+                        Image image;
+                        using (var bmpTemp = new Bitmap(image1.ImageLocation))
+                        {
+                            image = new Bitmap(bmpTemp);
+                        }
+                        Utils.ResizeDialogToImage(this, image1, image);
+                    }
+                }
+                Filepath = Path.Combine(MapPath, $"{LocationObj.Name}.txt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void locationNameValue_TextChanged(object sender, EventArgs e)
@@ -55,7 +77,7 @@ namespace CampaignGUI.Forms.LocationDisplay
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(.*jpg)|*.jpg| PNG files(.*png)|*.png| All Files(*.*)|*.*";
+                dialog.Filter = " JPG files(.*jpg)|*.jpg| PNG files(.*png)|*.png| All Files(*.*)|*.*";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -66,7 +88,7 @@ namespace CampaignGUI.Forms.LocationDisplay
                     image1.Image = image;
                     image1.Width = image.Width;
                     image1.Height = image.Height;
-                    this.Size = new Size(image.Width + 300, image.Height + 100);
+                    Size = new Size(image.Width + 300, image.Height + 100);
 
                     Utils.CopyUploadedImage(imageLocation, MapPath, "map.jpg");
                     LocationObj.Map = image;
@@ -83,12 +105,30 @@ namespace CampaignGUI.Forms.LocationDisplay
             try
             {
                 var obj = LocationObj;
-                Utils.SaveFile(ref obj, Filepath);
+                var success = Utils.SaveFile(ref obj, Filepath);
+                CampaignDisplay.createLabel(LocationObj);
+                if (success == 0)
+                {
+                    Timer timer = new Timer();
+                    timer.Interval = 2000;
+                    timer.Tick += new EventHandler(timer_Tick);
+                    save.Text = "Save \u2713";
+                    timer.Start();
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            save.Text = "Save";
+        }
     }
+
 }

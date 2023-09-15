@@ -115,7 +115,7 @@ namespace CampaignGUI.Forms.LocationDisplay
             this.Controls.Add(this.locationNameLabel);
             this.Controls.Add(this.image1);
             this.Name = "LocationDisplay";
-            this.Text = "LocationDisplay";
+            this.Text = "Location Display";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LocationDisplay_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.LocationDisplay_Load);
             this.Enter += new System.EventHandler(this.LocationDisplay_Load);

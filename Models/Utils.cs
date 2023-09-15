@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -76,35 +78,43 @@ namespace CampaignGUI.Models
             return result;
         }
 
-        public static Label CreateLabel(Location location, Form form)
+        public static Label CreateLabel(Location location, int offsetX, int offsetY)
         {
             Label namelabel = new Label();
-            namelabel.Location = new Point(location.Coordinates.Item1,location.Coordinates.Item2);
+            namelabel.Location = new Point(location.Coordinates.Item1+offsetX,location.Coordinates.Item2+offsetY);
             namelabel.Text = location.Name; 
             namelabel.AutoSize = true;
             return namelabel;
         }
 
-        public static void SaveFile<T>(ref T file, string fullPath)
+        public static int SaveFile<T>(ref T file, string fullPath)
         {
-            var exists = Directory.Exists(fullPath);
-            if (!exists)
+            try
             {
-                using (FileStream fs = File.Create(fullPath))
+                var exists = Directory.Exists(fullPath);
+                if (!exists)
                 {
-                    var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
-                    fs.Write(bytes, 0, bytes.Length);
-                    fs.Close();
-                };
+                    using (FileStream fs = File.Create(fullPath))
+                    {
+                        var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
+                        fs.Write(bytes, 0, bytes.Length);
+                        fs.Close();
+                    };
+                }
+                else
+                {
+                    using (FileStream fs = File.OpenWrite(fullPath))
+                    {
+                        var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
+                        fs.Write(bytes, 0, bytes.Length);
+                        fs.Close();
+                    };
+                }
+                return 0;
             }
-            else
+            catch (Exception ex)
             {
-                using (FileStream fs = File.OpenWrite(fullPath))
-                {
-                    var bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(file));
-                    fs.Write(bytes, 0, bytes.Length);
-                    fs.Close();
-                };
+                return -1;
             }
         }
 
@@ -118,6 +128,31 @@ namespace CampaignGUI.Models
             if (exists)
                 File.Delete(Path.Combine(localFilePath, filename));
             File.Copy(originalFilePath, Path.Combine(localFilePath, "map.jpg"));
+        }
+
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
     }
 

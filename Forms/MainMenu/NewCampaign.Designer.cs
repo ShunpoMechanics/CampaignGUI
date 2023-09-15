@@ -69,7 +69,7 @@ namespace CampaignGUI.Forms.MainMenu
             this.Controls.Add(this.campaignNameLabel);
             this.Controls.Add(this.campaignNameValue);
             this.Name = "NewCampaign";
-            this.Text = "NewCampaign";
+            this.Text = "New Campaign";
             this.ResumeLayout(false);
             this.PerformLayout();
 

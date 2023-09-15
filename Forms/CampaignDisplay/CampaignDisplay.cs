@@ -18,6 +18,7 @@ namespace CampaignGUI
     {
         public Campaign Campaign { get; set; }
         public string FileName { get; set; }
+        
         public CampaignDisplay(Campaign campaign, string filename)
         {
             InitializeComponent();
@@ -46,16 +47,30 @@ namespace CampaignGUI
                     var location = CampaignGUI.Models.Location.FromFile(contents);
                     Campaign.Locations.Add(location);
                     // Add label to map
-                    var offsetX = image1.Location.X;
-                    var offsetY = image1.Location.Y;
-                    Tuple<int, int> tuple = Tuple.Create(location.Coordinates.Item1 + offsetX, location.Coordinates.Item2 + offsetY);
-                    location.Coordinates = tuple;
 
-                    Label label = Utils.CreateLabel(location, this);
-                    this.Controls.Add(label);
-                    label.BringToFront();                    
+                    Label label = Utils.CreateLabel(location, image1.Location.X, image1.Location.Y);
+                    Controls.Add(label);
+                    label.BringToFront();
+                    label.Click += new EventHandler(LocationClick);
                 }
             }
+        }
+
+        public void createLabel(Location location)
+        {
+            Label label = Utils.CreateLabel(location, image1.Location.X, image1.Location.Y);
+            Controls.Add(label);
+            label.BringToFront();
+            label.Click += new EventHandler(LocationClick);
+            Campaign.Locations.Add(location);
+        }
+
+        private void LocationClick(object sender, EventArgs e)
+        {
+            Label label = sender as Label;
+            Location location = Campaign.Locations.Where(l => l.Name == label.Text).FirstOrDefault();
+            if(location != null)
+                openLocation(location);
         }
 
         private void campaignNamValue_TextChanged(object sender, EventArgs a)
@@ -82,15 +97,24 @@ namespace CampaignGUI
                 {
                     imageLocation = dialog.FileName;
 
-                    image1.ImageLocation = imageLocation;
+                    //image1.ImageLocation = imageLocation;
                     Image image = Image.FromFile(dialog.FileName);
+
+                    if (image.Width < 1920 && upscale.Checked)
+                        image = Utils.ResizeImage(image, 1920, 1080);
+
+                    Campaign.Map = image;
                     image1.Image = image;
                     image1.Width = image.Width;
                     image1.Height = image.Height;
-                    this.Size = new Size(image.Width+300, image.Height+100);
+                    Size = new Size(image.Width+300, image.Height+100);
                     
-                    Utils.CopyUploadedImage(imageLocation, Utils.GetMapPath(), "map.jpg");
-                    Campaign.Map = image;
+                    if (upscale.Checked)
+                    {
+                        image.Save(Path.Combine(Utils.GetMapPath(), "map.jpg"));
+                    }
+                    else
+                        Utils.CopyUploadedImage(imageLocation, Utils.GetMapPath(), "map.jpg");
                 }
             } 
             catch (Exception ex)
@@ -122,7 +146,7 @@ namespace CampaignGUI
 
         private void openLocation(Location location)
         {
-            LocationDisplay locationDisplay = new LocationDisplay(location);
+            LocationDisplay locationDisplay = new LocationDisplay(location, this);
             locationDisplay.Show();
         }
 

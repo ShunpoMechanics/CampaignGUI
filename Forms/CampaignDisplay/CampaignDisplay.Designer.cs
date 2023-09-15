@@ -34,6 +34,7 @@ namespace CampaignGUI
             this.campaignName = new System.Windows.Forms.Label();
             this.campaignNameValue = new System.Windows.Forms.TextBox();
             this.save = new System.Windows.Forms.Button();
+            this.upscale = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.image1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@ namespace CampaignGUI
             // campaignName
             // 
             this.campaignName.AutoSize = true;
-            this.campaignName.Location = new System.Drawing.Point(12, 80);
+            this.campaignName.Location = new System.Drawing.Point(9, 93);
             this.campaignName.Name = "campaignName";
             this.campaignName.Size = new System.Drawing.Size(85, 13);
             this.campaignName.TabIndex = 2;
@@ -67,7 +68,7 @@ namespace CampaignGUI
             // 
             // campaignNameValue
             // 
-            this.campaignNameValue.Location = new System.Drawing.Point(15, 118);
+            this.campaignNameValue.Location = new System.Drawing.Point(12, 118);
             this.campaignNameValue.Name = "campaignNameValue";
             this.campaignNameValue.Size = new System.Drawing.Size(165, 20);
             this.campaignNameValue.TabIndex = 3;
@@ -84,18 +85,29 @@ namespace CampaignGUI
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
+            // upscale
+            // 
+            this.upscale.AutoSize = true;
+            this.upscale.Location = new System.Drawing.Point(12, 63);
+            this.upscale.Name = "upscale";
+            this.upscale.Size = new System.Drawing.Size(71, 17);
+            this.upscale.TabIndex = 5;
+            this.upscale.Text = "Upscale?";
+            this.upscale.UseVisualStyleBackColor = true;
+            // 
             // CampaignDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1625, 608);
+            this.Controls.Add(this.upscale);
             this.Controls.Add(this.save);
             this.Controls.Add(this.campaignNameValue);
             this.Controls.Add(this.campaignName);
             this.Controls.Add(this.upload);
             this.Controls.Add(this.image1);
             this.Name = "CampaignDisplay";
-            this.Text = "Form1";
+            this.Text = "CampaignGUI";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.image1)).EndInit();
             this.ResumeLayout(false);
@@ -110,6 +122,7 @@ namespace CampaignGUI
         private System.Windows.Forms.Label campaignName;
         private System.Windows.Forms.TextBox campaignNameValue;
         private System.Windows.Forms.Button save;
+        private System.Windows.Forms.CheckBox upscale;
     }
 }
 
