@@ -481,6 +481,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // strScore
             // 
             this.strScore.Location = new System.Drawing.Point(26, 218);
+            this.strScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.strScore.Name = "strScore";
             this.strScore.Size = new System.Drawing.Size(57, 20);
             this.strScore.TabIndex = 30;
@@ -488,6 +493,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // dexScore
             // 
             this.dexScore.Location = new System.Drawing.Point(97, 218);
+            this.dexScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.dexScore.Name = "dexScore";
             this.dexScore.Size = new System.Drawing.Size(57, 20);
             this.dexScore.TabIndex = 31;
@@ -495,6 +505,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // conScore
             // 
             this.conScore.Location = new System.Drawing.Point(170, 218);
+            this.conScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.conScore.Name = "conScore";
             this.conScore.Size = new System.Drawing.Size(57, 20);
             this.conScore.TabIndex = 32;
@@ -502,6 +517,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // wisScore
             // 
             this.wisScore.Location = new System.Drawing.Point(311, 218);
+            this.wisScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.wisScore.Name = "wisScore";
             this.wisScore.Size = new System.Drawing.Size(57, 20);
             this.wisScore.TabIndex = 33;
@@ -509,6 +529,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // intScore
             // 
             this.intScore.Location = new System.Drawing.Point(239, 218);
+            this.intScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.intScore.Name = "intScore";
             this.intScore.Size = new System.Drawing.Size(57, 20);
             this.intScore.TabIndex = 34;
@@ -516,6 +541,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // chaScore
             // 
             this.chaScore.Location = new System.Drawing.Point(386, 218);
+            this.chaScore.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.chaScore.Name = "chaScore";
             this.chaScore.Size = new System.Drawing.Size(57, 20);
             this.chaScore.TabIndex = 35;
@@ -1047,6 +1077,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // strSaveMod
             // 
             this.strSaveMod.Location = new System.Drawing.Point(470, 184);
+            this.strSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.strSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.strSaveMod.Name = "strSaveMod";
             this.strSaveMod.Size = new System.Drawing.Size(55, 20);
             this.strSaveMod.TabIndex = 102;
@@ -1054,6 +1094,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // dexSaveMod
             // 
             this.dexSaveMod.Location = new System.Drawing.Point(470, 204);
+            this.dexSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.dexSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.dexSaveMod.Name = "dexSaveMod";
             this.dexSaveMod.Size = new System.Drawing.Size(55, 20);
             this.dexSaveMod.TabIndex = 103;
@@ -1061,6 +1111,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // intSaveMod
             // 
             this.intSaveMod.Location = new System.Drawing.Point(470, 263);
+            this.intSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.intSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.intSaveMod.Name = "intSaveMod";
             this.intSaveMod.Size = new System.Drawing.Size(55, 20);
             this.intSaveMod.TabIndex = 106;
@@ -1068,6 +1128,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // wisSaveMod
             // 
             this.wisSaveMod.Location = new System.Drawing.Point(470, 243);
+            this.wisSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.wisSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.wisSaveMod.Name = "wisSaveMod";
             this.wisSaveMod.Size = new System.Drawing.Size(55, 20);
             this.wisSaveMod.TabIndex = 105;
@@ -1075,6 +1145,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // conSaveMod
             // 
             this.conSaveMod.Location = new System.Drawing.Point(470, 223);
+            this.conSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.conSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.conSaveMod.Name = "conSaveMod";
             this.conSaveMod.Size = new System.Drawing.Size(55, 20);
             this.conSaveMod.TabIndex = 104;
@@ -1082,6 +1162,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // animalHandlingMod
             // 
             this.animalHandlingMod.Location = new System.Drawing.Point(470, 382);
+            this.animalHandlingMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.animalHandlingMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.animalHandlingMod.Name = "animalHandlingMod";
             this.animalHandlingMod.Size = new System.Drawing.Size(55, 20);
             this.animalHandlingMod.TabIndex = 112;
@@ -1089,6 +1179,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // stealthMod
             // 
             this.stealthMod.Location = new System.Drawing.Point(470, 362);
+            this.stealthMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.stealthMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.stealthMod.Name = "stealthMod";
             this.stealthMod.Size = new System.Drawing.Size(55, 20);
             this.stealthMod.TabIndex = 111;
@@ -1096,6 +1196,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // sleightOfHandMod
             // 
             this.sleightOfHandMod.Location = new System.Drawing.Point(470, 342);
+            this.sleightOfHandMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.sleightOfHandMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.sleightOfHandMod.Name = "sleightOfHandMod";
             this.sleightOfHandMod.Size = new System.Drawing.Size(55, 20);
             this.sleightOfHandMod.TabIndex = 110;
@@ -1103,6 +1213,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // acrobaticsMod
             // 
             this.acrobaticsMod.Location = new System.Drawing.Point(470, 323);
+            this.acrobaticsMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.acrobaticsMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.acrobaticsMod.Name = "acrobaticsMod";
             this.acrobaticsMod.Size = new System.Drawing.Size(55, 20);
             this.acrobaticsMod.TabIndex = 109;
@@ -1110,6 +1230,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // athleticsMod
             // 
             this.athleticsMod.Location = new System.Drawing.Point(470, 303);
+            this.athleticsMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.athleticsMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.athleticsMod.Name = "athleticsMod";
             this.athleticsMod.Size = new System.Drawing.Size(55, 20);
             this.athleticsMod.TabIndex = 108;
@@ -1117,6 +1247,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // chaSaveMod
             // 
             this.chaSaveMod.Location = new System.Drawing.Point(470, 283);
+            this.chaSaveMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.chaSaveMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.chaSaveMod.Name = "chaSaveMod";
             this.chaSaveMod.Size = new System.Drawing.Size(55, 20);
             this.chaSaveMod.TabIndex = 107;
@@ -1124,6 +1264,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // performanceMod
             // 
             this.performanceMod.Location = new System.Drawing.Point(470, 618);
+            this.performanceMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.performanceMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.performanceMod.Name = "performanceMod";
             this.performanceMod.Size = new System.Drawing.Size(55, 20);
             this.performanceMod.TabIndex = 124;
@@ -1131,6 +1281,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // intimidationMod
             // 
             this.intimidationMod.Location = new System.Drawing.Point(470, 598);
+            this.intimidationMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.intimidationMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.intimidationMod.Name = "intimidationMod";
             this.intimidationMod.Size = new System.Drawing.Size(55, 20);
             this.intimidationMod.TabIndex = 123;
@@ -1138,6 +1298,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // deceptionMod
             // 
             this.deceptionMod.Location = new System.Drawing.Point(470, 578);
+            this.deceptionMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.deceptionMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.deceptionMod.Name = "deceptionMod";
             this.deceptionMod.Size = new System.Drawing.Size(55, 20);
             this.deceptionMod.TabIndex = 122;
@@ -1145,6 +1315,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // religionMod
             // 
             this.religionMod.Location = new System.Drawing.Point(470, 559);
+            this.religionMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.religionMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.religionMod.Name = "religionMod";
             this.religionMod.Size = new System.Drawing.Size(55, 20);
             this.religionMod.TabIndex = 121;
@@ -1152,6 +1332,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // natureMod
             // 
             this.natureMod.Location = new System.Drawing.Point(470, 539);
+            this.natureMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.natureMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.natureMod.Name = "natureMod";
             this.natureMod.Size = new System.Drawing.Size(55, 20);
             this.natureMod.TabIndex = 120;
@@ -1159,6 +1349,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // investigationMod
             // 
             this.investigationMod.Location = new System.Drawing.Point(470, 519);
+            this.investigationMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.investigationMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.investigationMod.Name = "investigationMod";
             this.investigationMod.Size = new System.Drawing.Size(55, 20);
             this.investigationMod.TabIndex = 119;
@@ -1166,6 +1366,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // historyMod
             // 
             this.historyMod.Location = new System.Drawing.Point(470, 499);
+            this.historyMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.historyMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.historyMod.Name = "historyMod";
             this.historyMod.Size = new System.Drawing.Size(55, 20);
             this.historyMod.TabIndex = 118;
@@ -1173,6 +1383,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // arcanaMod
             // 
             this.arcanaMod.Location = new System.Drawing.Point(470, 479);
+            this.arcanaMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.arcanaMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.arcanaMod.Name = "arcanaMod";
             this.arcanaMod.Size = new System.Drawing.Size(55, 20);
             this.arcanaMod.TabIndex = 117;
@@ -1180,6 +1400,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // survivalMod
             // 
             this.survivalMod.Location = new System.Drawing.Point(470, 459);
+            this.survivalMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.survivalMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.survivalMod.Name = "survivalMod";
             this.survivalMod.Size = new System.Drawing.Size(55, 20);
             this.survivalMod.TabIndex = 116;
@@ -1187,6 +1417,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // perceptionMod
             // 
             this.perceptionMod.Location = new System.Drawing.Point(470, 440);
+            this.perceptionMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.perceptionMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.perceptionMod.Name = "perceptionMod";
             this.perceptionMod.Size = new System.Drawing.Size(55, 20);
             this.perceptionMod.TabIndex = 115;
@@ -1194,6 +1434,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // medicineMod
             // 
             this.medicineMod.Location = new System.Drawing.Point(470, 420);
+            this.medicineMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.medicineMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.medicineMod.Name = "medicineMod";
             this.medicineMod.Size = new System.Drawing.Size(55, 20);
             this.medicineMod.TabIndex = 114;
@@ -1201,6 +1451,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // insightMod
             // 
             this.insightMod.Location = new System.Drawing.Point(470, 400);
+            this.insightMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.insightMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.insightMod.Name = "insightMod";
             this.insightMod.Size = new System.Drawing.Size(55, 20);
             this.insightMod.TabIndex = 113;
@@ -1208,6 +1468,16 @@ namespace CampaignGUI.Forms.PersonEditor
             // persuasionMod
             // 
             this.persuasionMod.Location = new System.Drawing.Point(470, 636);
+            this.persuasionMod.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.persuasionMod.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            -2147483648});
             this.persuasionMod.Name = "persuasionMod";
             this.persuasionMod.Size = new System.Drawing.Size(55, 20);
             this.persuasionMod.TabIndex = 129;

@@ -29,7 +29,7 @@ namespace CampaignGUI.Forms.PersonEditor
         public PersonEditor()
         {
             InitializeComponent();
-            Person = new People();
+            Person = new People(true);
             ClassResource1 = new ClassResource();
             ClassResource2 = new ClassResource();
         }
@@ -39,7 +39,7 @@ namespace CampaignGUI.Forms.PersonEditor
             InitializeComponent();
             Person = person;
             ClassResource1 = new ClassResource();
-            ClassResource2 = new ClassResource();
+            ClassResource2 = new ClassResource();            
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -87,6 +87,18 @@ namespace CampaignGUI.Forms.PersonEditor
                 wisScore.DataBindings.Add("Value", Person, "WisdomScore");
                 chaScore.DataBindings.Add("Value", Person, "CharismaScore");
 
+                var scoreList = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains("score")).ToList();
+                scoreList.ForEach(score =>
+                {
+                    score.ValueChanged += new EventHandler(score_Changed);
+                    string eleName = score.Name.Substring(0, 3) + "Mod";
+                    var mod = Controls.OfType<TextBox>().Where(n => n.Name == eleName).FirstOrDefault();
+                    if (mod != null)
+                    {
+                        mod.Text = CalculateModifier((double)score.Value).ToString();
+                    }
+                });
+
                 description.DataBindings.Add("Text", Person, "Description");
                 inventory.DataBindings.Add("Text", Person, "Inventory");
                 attacksLabel.DataBindings.Add("Text", Person, "Attacks");
@@ -107,6 +119,29 @@ namespace CampaignGUI.Forms.PersonEditor
                 maxResource2.DataBindings.Add("Value", ClassResource2, "Max");
                 remainingResource2.DataBindings.Add("Value", ClassResource2, "Current");
 
+                var list = Controls.OfType<CheckBox>().Where(l => !l.Name.ToLower().Contains("death") && !l.Name.ToLower().Contains("override")).ToList();
+                var list2 = Controls.OfType<NumericUpDown>().Where(p => p.Name.Contains("Mod")).ToList();
+
+                foreach (var prof in Person.Proficiencies)
+                {
+                    var checkbox = list.Where(l => prof.Name.ToLower().Trim().Contains(l.Name.ToLower())).FirstOrDefault();
+                    var numeric = list2.Where(l => prof.Name.Substring(0, prof.Name.Length - 6).ToLower() + "Mod" == l.Name).FirstOrDefault();
+                    if (checkbox != null)
+                        checkbox.Checked = prof.Proficient;
+                    if (numeric != null)
+                        numeric.Value = prof.Value;
+                }
+
+                proficienciesList = Person.Proficiencies;
+
+                list.ForEach(checkbox => {
+                    checkbox.CheckedChanged += new EventHandler(checkbox_Changed);
+                });
+
+                list2.ForEach(numeric =>
+                {
+                    numeric.ValueChanged += new EventHandler(proficiency_Changed);
+                });
 
                 Image = Person.Photo;
                 Image2 = Person.SecondPhoto;
@@ -141,20 +176,75 @@ namespace CampaignGUI.Forms.PersonEditor
 
         }
 
+        private void proficiency_Changed(object sender, EventArgs e)
+        {
+            //var ele = sender as NumericUpDown;
+            //var name = ele.Name.Substring(0, ele.Name.Length - 3);
+            //var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name));
+            //if(index != -1)
+            //    proficienciesList[index].Value = (int)ele.Value;
+        }
+
         private void overrideMods_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void score_Changed(object sender, EventArgs e)
+        {
+            NumericUpDown ele = sender as NumericUpDown;
+            int oldMod = 0;
+            string eleName = ele.Name.Substring(0, 3) + "Mod";
+            var mod = Controls.OfType<TextBox>().Where(n => n.Name == eleName).FirstOrDefault();
+            oldMod = int.Parse(mod.Text);
+            if (mod != null)
+            {
+                mod.Text = CalculateModifier((double)ele.Value).ToString();
+            }
+            var score = _stats.Where(s => s.Acroynm.ToLower() == ele.Name.Substring(0, 3)).First();
+            var list = Controls.OfType<CheckBox>().Where(l => l.Text.ToLower().Contains(score.Acroynm)).ToList();
+
+            var list2 = Controls.OfType<NumericUpDown>().Where(n => n.Name.Contains("Mod")).ToList();
+            list.ForEach(item =>
+            {
+                NumericUpDown num =  list2.Where(n => n.Name.ToLower().Substring(0, n.Name.Length - 3) == item.Name.ToLower()).FirstOrDefault();
+                num.Value -= oldMod;
+                num.Value += int.Parse(mod.Text);
+            });
+        }
+
+        private int CalculateModifier(double score)
+        {
+            return (int)Math.Floor((score - 10) / 2);
+        }
+
         private void checkbox_Changed(object sender, EventArgs e)
         {
-            var ele = sender as CheckBox;
-            var eleName = ele.Name.Substring(ele.Name.Length - 5);
-            var prof = proficienciesList.Where(l => l.Name == eleName).FirstOrDefault();
+            CheckBox ele = sender as CheckBox;
+            string eleName = ele.Name;
+            Stat stat = _stats.Where(s => eleName.ToLower().Contains(s.Acroynm)).FirstOrDefault();
+            bool isSave = stat != null;
+            if (isSave && eleName != "intimidation")
+                eleName = stat.Name;
+            var prof = proficienciesList.Where(l => l.Name.ToLower().Replace(" ", "").Contains(eleName.ToLower())).FirstOrDefault();
+            var index = proficienciesList.IndexOf(prof);
             if( prof != null)
             {
                 prof.Proficient = !prof.Proficient;
-
+                NumericUpDown num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(eleName.ToLower())).FirstOrDefault();
+                if(isSave)
+                    num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(stat.Acroynm.ToLower()) && !n.Name.ToLower().Contains("intimidation")).FirstOrDefault();
+                if (prof.Proficient)
+                {                                        
+                    num.Value += Person.ProficiencyBonus;
+                    prof.Value += Person.ProficiencyBonus;                    
+                }
+                else
+                {
+                    num.Value -= Person.ProficiencyBonus;
+                    prof.Value -= Person.ProficiencyBonus;
+                }
+                proficienciesList[index] = prof;
             }
         }
     }

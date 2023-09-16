@@ -19,6 +19,13 @@ namespace CampaignGUI.Models
             Id = Guid.NewGuid();
             Proficiencies = new List<Proficiency>();            
             Relationships = new List<Relationship>();
+            Quests = new List<Quest>();            
+        }
+        public People(bool newPerson)
+        {
+            Id = Guid.NewGuid();
+            Proficiencies = new List<Proficiency>();            
+            Relationships = new List<Relationship>();
             Quests = new List<Quest>();
             string scores = File.ReadAllText("../Ability Scores.txt");
             Proficiencies = JsonConvert.DeserializeObject<List<Proficiency>>(scores);
@@ -47,7 +54,13 @@ namespace CampaignGUI.Models
                 }
                 person.SecondPhoto = image;
             }
+            person.ProficiencyBonus = CalculateProficiencyBonus(person.Level);
             return person;
+        }
+
+        public static int CalculateProficiencyBonus(int level)
+        {
+            return (int) Math.Floor(2 + (((double)level - 1) / 4));
         }
 
     }
