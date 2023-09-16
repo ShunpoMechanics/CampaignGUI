@@ -103,9 +103,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.sleightOfHand = new System.Windows.Forms.CheckBox();
             this.performance = new System.Windows.Forms.CheckBox();
             this.persuasion = new System.Windows.Forms.CheckBox();
-            this.customSkill1 = new System.Windows.Forms.CheckBox();
-            this.customSkill2 = new System.Windows.Forms.CheckBox();
-            this.customSkill3 = new System.Windows.Forms.CheckBox();
             this.passivePerception = new System.Windows.Forms.NumericUpDown();
             this.passiveInvestigation = new System.Windows.Forms.NumericUpDown();
             this.passiveInsight = new System.Windows.Forms.NumericUpDown();
@@ -125,9 +122,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.spellSaveDCLabel = new System.Windows.Forms.Label();
             this.spellAttackBonus = new System.Windows.Forms.NumericUpDown();
             this.spellSaveDC = new System.Windows.Forms.NumericUpDown();
-            this.customSkill1Label = new System.Windows.Forms.TextBox();
-            this.customSkill3Label = new System.Windows.Forms.TextBox();
-            this.customSkill2Label = new System.Windows.Forms.TextBox();
             this.strSaveMod = new System.Windows.Forms.NumericUpDown();
             this.dexSaveMod = new System.Windows.Forms.NumericUpDown();
             this.intSaveMod = new System.Windows.Forms.NumericUpDown();
@@ -151,15 +145,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.perceptionMod = new System.Windows.Forms.NumericUpDown();
             this.medicineMod = new System.Windows.Forms.NumericUpDown();
             this.insightMod = new System.Windows.Forms.NumericUpDown();
-            this.customSkill4Label = new System.Windows.Forms.TextBox();
-            this.customSkill5Label = new System.Windows.Forms.TextBox();
-            this.customSkill5 = new System.Windows.Forms.CheckBox();
-            this.customSkill4 = new System.Windows.Forms.CheckBox();
-            this.customSkill5Mod = new System.Windows.Forms.NumericUpDown();
-            this.customSkill4Mod = new System.Windows.Forms.NumericUpDown();
-            this.customSkill3Mod = new System.Windows.Forms.NumericUpDown();
-            this.customSkill2Mod = new System.Windows.Forms.NumericUpDown();
-            this.customSkill1Mod = new System.Windows.Forms.NumericUpDown();
             this.persuasionMod = new System.Windows.Forms.NumericUpDown();
             this.upload2 = new System.Windows.Forms.Button();
             this.additionalImage = new System.Windows.Forms.PictureBox();
@@ -247,11 +232,6 @@ namespace CampaignGUI.Forms.PersonEditor
             ((System.ComponentModel.ISupportInitialize)(this.perceptionMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicineMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.insightMod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill5Mod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill4Mod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill3Mod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill2Mod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill1Mod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.persuasionMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.additionalImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempHP)).BeginInit();
@@ -326,7 +306,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.relationships.TabIndex = 6;
             this.relationships.Text = "Relationships";
             this.relationships.UseVisualStyleBackColor = true;
-            this.relationships.Click += new System.EventHandler(this.relationships_Click);
             // 
             // name
             // 
@@ -375,7 +354,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.quests.TabIndex = 13;
             this.quests.Text = "Quests";
             this.quests.UseVisualStyleBackColor = true;
-            this.quests.Click += new System.EventHandler(this.quests_Click);
             // 
             // attacks
             // 
@@ -506,7 +484,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.strScore.Name = "strScore";
             this.strScore.Size = new System.Drawing.Size(57, 20);
             this.strScore.TabIndex = 30;
-            this.strScore.ValueChanged += new System.EventHandler(this.strScore_ValueChanged);
             // 
             // dexScore
             // 
@@ -514,7 +491,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.dexScore.Name = "dexScore";
             this.dexScore.Size = new System.Drawing.Size(57, 20);
             this.dexScore.TabIndex = 31;
-            this.dexScore.ValueChanged += new System.EventHandler(this.dexScore_ValueChanged);
             // 
             // conScore
             // 
@@ -522,7 +498,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.conScore.Name = "conScore";
             this.conScore.Size = new System.Drawing.Size(57, 20);
             this.conScore.TabIndex = 32;
-            this.conScore.ValueChanged += new System.EventHandler(this.conScore_ValueChanged);
             // 
             // wisScore
             // 
@@ -530,7 +505,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.wisScore.Name = "wisScore";
             this.wisScore.Size = new System.Drawing.Size(57, 20);
             this.wisScore.TabIndex = 33;
-            this.wisScore.ValueChanged += new System.EventHandler(this.wisScore_ValueChanged);
             // 
             // intScore
             // 
@@ -538,7 +512,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intScore.Name = "intScore";
             this.intScore.Size = new System.Drawing.Size(57, 20);
             this.intScore.TabIndex = 34;
-            this.intScore.ValueChanged += new System.EventHandler(this.intScore_ValueChanged);
             // 
             // chaScore
             // 
@@ -546,7 +519,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.chaScore.Name = "chaScore";
             this.chaScore.Size = new System.Drawing.Size(57, 20);
             this.chaScore.TabIndex = 35;
-            this.chaScore.ValueChanged += new System.EventHandler(this.chaScore_ValueChanged);
             // 
             // strLabel
             // 
@@ -682,7 +654,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.strSave.TabIndex = 52;
             this.strSave.Text = "Strength Saving Throw (STR)";
             this.strSave.UseVisualStyleBackColor = true;
-            this.strSave.CheckedChanged += new System.EventHandler(this.strSave_CheckedChanged);
             // 
             // dexSave
             // 
@@ -693,7 +664,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.dexSave.TabIndex = 53;
             this.dexSave.Text = "Dexterity Saving Throw (DEX)";
             this.dexSave.UseVisualStyleBackColor = true;
-            this.dexSave.CheckedChanged += new System.EventHandler(this.dexSave_CheckedChanged);
             // 
             // conSave
             // 
@@ -704,7 +674,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.conSave.TabIndex = 54;
             this.conSave.Text = "Constitution Saving Throw (CON)";
             this.conSave.UseVisualStyleBackColor = true;
-            this.conSave.CheckedChanged += new System.EventHandler(this.conSave_CheckedChanged);
             // 
             // wisSave
             // 
@@ -715,7 +684,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.wisSave.TabIndex = 55;
             this.wisSave.Text = "Wisdom Saving Throw (WIS)";
             this.wisSave.UseVisualStyleBackColor = true;
-            this.wisSave.CheckedChanged += new System.EventHandler(this.wisSave_CheckedChanged);
             // 
             // intSave
             // 
@@ -726,7 +694,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intSave.TabIndex = 56;
             this.intSave.Text = "Intelligence Saving Throw (INT)";
             this.intSave.UseVisualStyleBackColor = true;
-            this.intSave.CheckedChanged += new System.EventHandler(this.intSave_CheckedChanged);
             // 
             // chaSave
             // 
@@ -737,7 +704,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.chaSave.TabIndex = 57;
             this.chaSave.Text = "Charisma Saving Throw (CHA)";
             this.chaSave.UseVisualStyleBackColor = true;
-            this.chaSave.CheckedChanged += new System.EventHandler(this.chaSave_CheckedChanged);
             // 
             // athletics
             // 
@@ -748,7 +714,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.athletics.TabIndex = 58;
             this.athletics.Text = "Athletics (STR)";
             this.athletics.UseVisualStyleBackColor = true;
-            this.athletics.CheckedChanged += new System.EventHandler(this.athletics_CheckedChanged);
             // 
             // acrobatics
             // 
@@ -759,7 +724,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.acrobatics.TabIndex = 59;
             this.acrobatics.Text = "Acrobatics (DEX)";
             this.acrobatics.UseVisualStyleBackColor = true;
-            this.acrobatics.CheckedChanged += new System.EventHandler(this.acrobatics_CheckedChanged);
             // 
             // intimidation
             // 
@@ -770,7 +734,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intimidation.TabIndex = 60;
             this.intimidation.Text = "Intimidation (CHA)";
             this.intimidation.UseVisualStyleBackColor = true;
-            this.intimidation.CheckedChanged += new System.EventHandler(this.intimidation_CheckedChanged);
             // 
             // deception
             // 
@@ -781,7 +744,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.deception.TabIndex = 61;
             this.deception.Text = "Deception (CHA)";
             this.deception.UseVisualStyleBackColor = true;
-            this.deception.CheckedChanged += new System.EventHandler(this.deception_CheckedChanged);
             // 
             // nature
             // 
@@ -792,7 +754,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.nature.TabIndex = 62;
             this.nature.Text = "Nature (INT)";
             this.nature.UseVisualStyleBackColor = true;
-            this.nature.CheckedChanged += new System.EventHandler(this.nature_CheckedChanged);
             // 
             // arcana
             // 
@@ -803,7 +764,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.arcana.TabIndex = 63;
             this.arcana.Text = "Arcana (INT)";
             this.arcana.UseVisualStyleBackColor = true;
-            this.arcana.CheckedChanged += new System.EventHandler(this.arcana_CheckedChanged);
             // 
             // survival
             // 
@@ -814,7 +774,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.survival.TabIndex = 64;
             this.survival.Text = "Survival (WIS)";
             this.survival.UseVisualStyleBackColor = true;
-            this.survival.CheckedChanged += new System.EventHandler(this.survival_CheckedChanged);
             // 
             // medicine
             // 
@@ -825,7 +784,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.medicine.TabIndex = 65;
             this.medicine.Text = "Medicine (WIS)";
             this.medicine.UseVisualStyleBackColor = true;
-            this.medicine.CheckedChanged += new System.EventHandler(this.medicine_CheckedChanged);
             // 
             // insight
             // 
@@ -836,7 +794,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.insight.TabIndex = 66;
             this.insight.Text = "Insight (WIS)";
             this.insight.UseVisualStyleBackColor = true;
-            this.insight.CheckedChanged += new System.EventHandler(this.insight_CheckedChanged);
             // 
             // religion
             // 
@@ -847,7 +804,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.religion.TabIndex = 67;
             this.religion.Text = "Religion (INT)";
             this.religion.UseVisualStyleBackColor = true;
-            this.religion.CheckedChanged += new System.EventHandler(this.religion_CheckedChanged);
             // 
             // investigation
             // 
@@ -858,7 +814,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.investigation.TabIndex = 68;
             this.investigation.Text = "Investigation (INT)";
             this.investigation.UseVisualStyleBackColor = true;
-            this.investigation.CheckedChanged += new System.EventHandler(this.investigation_CheckedChanged);
             // 
             // history
             // 
@@ -869,7 +824,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.history.TabIndex = 69;
             this.history.Text = "History (INT)";
             this.history.UseVisualStyleBackColor = true;
-            this.history.CheckedChanged += new System.EventHandler(this.history_CheckedChanged);
             // 
             // perception
             // 
@@ -879,8 +833,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.perception.Size = new System.Drawing.Size(107, 17);
             this.perception.TabIndex = 70;
             this.perception.Text = "Perception (WIS)";
-            this.perception.UseVisualStyleBackColor = true;
-            this.perception.CheckedChanged += new System.EventHandler(this.perception_CheckedChanged);
             // 
             // animalHandling
             // 
@@ -891,7 +843,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.animalHandling.TabIndex = 71;
             this.animalHandling.Text = "Animal Handling (WIS)";
             this.animalHandling.UseVisualStyleBackColor = true;
-            this.animalHandling.CheckedChanged += new System.EventHandler(this.animalHandling_CheckedChanged);
             // 
             // stealth
             // 
@@ -902,7 +853,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.stealth.TabIndex = 72;
             this.stealth.Text = "Stealth (DEX)";
             this.stealth.UseVisualStyleBackColor = true;
-            this.stealth.CheckedChanged += new System.EventHandler(this.stealth_CheckedChanged);
             // 
             // sleightOfHand
             // 
@@ -913,7 +863,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.sleightOfHand.TabIndex = 73;
             this.sleightOfHand.Text = "Sleight of Hand (DEX)";
             this.sleightOfHand.UseVisualStyleBackColor = true;
-            this.sleightOfHand.CheckedChanged += new System.EventHandler(this.sleightOfHand_CheckedChanged);
             // 
             // performance
             // 
@@ -924,7 +873,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.performance.TabIndex = 74;
             this.performance.Text = "Performance (CHA)";
             this.performance.UseVisualStyleBackColor = true;
-            this.performance.CheckedChanged += new System.EventHandler(this.performance_CheckedChanged);
             // 
             // persuasion
             // 
@@ -934,38 +882,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.persuasion.Size = new System.Drawing.Size(109, 17);
             this.persuasion.TabIndex = 75;
             this.persuasion.Text = "Persuasion (CHA)";
-            this.persuasion.UseVisualStyleBackColor = true;
-            this.persuasion.CheckedChanged += new System.EventHandler(this.persuasion_CheckedChanged);
-            // 
-            // customSkill1
-            // 
-            this.customSkill1.AutoSize = true;
-            this.customSkill1.Location = new System.Drawing.Point(531, 661);
-            this.customSkill1.Name = "customSkill1";
-            this.customSkill1.Size = new System.Drawing.Size(15, 14);
-            this.customSkill1.TabIndex = 76;
-            this.customSkill1.UseVisualStyleBackColor = true;
-            this.customSkill1.CheckedChanged += new System.EventHandler(this.customSkill1_CheckedChanged);
-            // 
-            // customSkill2
-            // 
-            this.customSkill2.AutoSize = true;
-            this.customSkill2.Location = new System.Drawing.Point(531, 681);
-            this.customSkill2.Name = "customSkill2";
-            this.customSkill2.Size = new System.Drawing.Size(15, 14);
-            this.customSkill2.TabIndex = 77;
-            this.customSkill2.UseVisualStyleBackColor = true;
-            this.customSkill2.CheckedChanged += new System.EventHandler(this.customSkill2_CheckedChanged);
-            // 
-            // customSkill3
-            // 
-            this.customSkill3.AutoSize = true;
-            this.customSkill3.Location = new System.Drawing.Point(531, 700);
-            this.customSkill3.Name = "customSkill3";
-            this.customSkill3.Size = new System.Drawing.Size(15, 14);
-            this.customSkill3.TabIndex = 78;
-            this.customSkill3.UseVisualStyleBackColor = true;
-            this.customSkill3.CheckedChanged += new System.EventHandler(this.customSkill3_CheckedChanged);
             // 
             // passivePerception
             // 
@@ -1128,33 +1044,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.spellSaveDC.Size = new System.Drawing.Size(49, 20);
             this.spellSaveDC.TabIndex = 97;
             // 
-            // customSkill1Label
-            // 
-            this.customSkill1Label.Location = new System.Drawing.Point(547, 657);
-            this.customSkill1Label.Name = "customSkill1Label";
-            this.customSkill1Label.Size = new System.Drawing.Size(109, 20);
-            this.customSkill1Label.TabIndex = 98;
-            this.customSkill1Label.Text = "Custom Skill 1 (STR)";
-            this.customSkill1Label.TextChanged += new System.EventHandler(this.customSkillLabel1_TextChanged);
-            // 
-            // customSkill3Label
-            // 
-            this.customSkill3Label.Location = new System.Drawing.Point(547, 697);
-            this.customSkill3Label.Name = "customSkill3Label";
-            this.customSkill3Label.Size = new System.Drawing.Size(109, 20);
-            this.customSkill3Label.TabIndex = 99;
-            this.customSkill3Label.Text = "Custom Skill 3 (DEX)";
-            this.customSkill3Label.TextChanged += new System.EventHandler(this.customSkillLabel3_TextChanged);
-            // 
-            // customSkill2Label
-            // 
-            this.customSkill2Label.Location = new System.Drawing.Point(547, 677);
-            this.customSkill2Label.Name = "customSkill2Label";
-            this.customSkill2Label.Size = new System.Drawing.Size(109, 20);
-            this.customSkill2Label.TabIndex = 100;
-            this.customSkill2Label.Text = "Custom Skill 2 (WIS)";
-            this.customSkill2Label.TextChanged += new System.EventHandler(this.customSkillLabel2_TextChanged);
-            // 
             // strSaveMod
             // 
             this.strSaveMod.Location = new System.Drawing.Point(470, 184);
@@ -1315,79 +1204,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.insightMod.Name = "insightMod";
             this.insightMod.Size = new System.Drawing.Size(55, 20);
             this.insightMod.TabIndex = 113;
-            // 
-            // customSkill4Label
-            // 
-            this.customSkill4Label.Location = new System.Drawing.Point(547, 717);
-            this.customSkill4Label.Name = "customSkill4Label";
-            this.customSkill4Label.Size = new System.Drawing.Size(109, 20);
-            this.customSkill4Label.TabIndex = 128;
-            this.customSkill4Label.Text = "Custom Skill 4 (CHA)";
-            this.customSkill4Label.TextChanged += new System.EventHandler(this.customSkill4Label_TextChanged);
-            // 
-            // customSkill5Label
-            // 
-            this.customSkill5Label.Location = new System.Drawing.Point(547, 737);
-            this.customSkill5Label.Name = "customSkill5Label";
-            this.customSkill5Label.Size = new System.Drawing.Size(109, 20);
-            this.customSkill5Label.TabIndex = 127;
-            this.customSkill5Label.Text = "Custom Skill 5 (DEX)";
-            this.customSkill5Label.TextChanged += new System.EventHandler(this.customSkill5Label_TextChanged);
-            // 
-            // customSkill5
-            // 
-            this.customSkill5.AutoSize = true;
-            this.customSkill5.Location = new System.Drawing.Point(531, 740);
-            this.customSkill5.Name = "customSkill5";
-            this.customSkill5.Size = new System.Drawing.Size(15, 14);
-            this.customSkill5.TabIndex = 126;
-            this.customSkill5.UseVisualStyleBackColor = true;
-            this.customSkill5.CheckedChanged += new System.EventHandler(this.customSkill5_CheckedChanged);
-            // 
-            // customSkill4
-            // 
-            this.customSkill4.AutoSize = true;
-            this.customSkill4.Location = new System.Drawing.Point(531, 721);
-            this.customSkill4.Name = "customSkill4";
-            this.customSkill4.Size = new System.Drawing.Size(15, 14);
-            this.customSkill4.TabIndex = 125;
-            this.customSkill4.UseVisualStyleBackColor = true;
-            this.customSkill4.CheckedChanged += new System.EventHandler(this.customSkill4_CheckedChanged);
-            // 
-            // customSkill5Mod
-            // 
-            this.customSkill5Mod.Location = new System.Drawing.Point(470, 735);
-            this.customSkill5Mod.Name = "customSkill5Mod";
-            this.customSkill5Mod.Size = new System.Drawing.Size(55, 20);
-            this.customSkill5Mod.TabIndex = 134;
-            // 
-            // customSkill4Mod
-            // 
-            this.customSkill4Mod.Location = new System.Drawing.Point(470, 715);
-            this.customSkill4Mod.Name = "customSkill4Mod";
-            this.customSkill4Mod.Size = new System.Drawing.Size(55, 20);
-            this.customSkill4Mod.TabIndex = 133;
-            // 
-            // customSkill3Mod
-            // 
-            this.customSkill3Mod.Location = new System.Drawing.Point(470, 695);
-            this.customSkill3Mod.Name = "customSkill3Mod";
-            this.customSkill3Mod.Size = new System.Drawing.Size(55, 20);
-            this.customSkill3Mod.TabIndex = 132;
-            // 
-            // customSkill2Mod
-            // 
-            this.customSkill2Mod.Location = new System.Drawing.Point(470, 676);
-            this.customSkill2Mod.Name = "customSkill2Mod";
-            this.customSkill2Mod.Size = new System.Drawing.Size(55, 20);
-            this.customSkill2Mod.TabIndex = 131;
-            // 
-            // customSkill1Mod
-            // 
-            this.customSkill1Mod.Location = new System.Drawing.Point(470, 656);
-            this.customSkill1Mod.Name = "customSkill1Mod";
-            this.customSkill1Mod.Size = new System.Drawing.Size(55, 20);
-            this.customSkill1Mod.TabIndex = 130;
             // 
             // persuasionMod
             // 
@@ -1713,7 +1529,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.spellcastingAbility.Name = "spellcastingAbility";
             this.spellcastingAbility.Size = new System.Drawing.Size(86, 21);
             this.spellcastingAbility.TabIndex = 172;
-            this.spellcastingAbility.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -1775,7 +1590,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.level.Name = "level";
             this.level.Size = new System.Drawing.Size(44, 20);
             this.level.TabIndex = 179;
-            this.level.ValueChanged += new System.EventHandler(this.level_ValueChanged);
             // 
             // save
             // 
@@ -1847,16 +1661,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.Controls.Add(this.alignmentLabel);
             this.Controls.Add(this.additionalImage);
             this.Controls.Add(this.upload2);
-            this.Controls.Add(this.customSkill5Mod);
-            this.Controls.Add(this.customSkill4Mod);
-            this.Controls.Add(this.customSkill3Mod);
-            this.Controls.Add(this.customSkill2Mod);
-            this.Controls.Add(this.customSkill1Mod);
             this.Controls.Add(this.persuasionMod);
-            this.Controls.Add(this.customSkill4Label);
-            this.Controls.Add(this.customSkill5Label);
-            this.Controls.Add(this.customSkill5);
-            this.Controls.Add(this.customSkill4);
             this.Controls.Add(this.performanceMod);
             this.Controls.Add(this.intimidationMod);
             this.Controls.Add(this.deceptionMod);
@@ -1880,9 +1685,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.Controls.Add(this.conSaveMod);
             this.Controls.Add(this.dexSaveMod);
             this.Controls.Add(this.strSaveMod);
-            this.Controls.Add(this.customSkill2Label);
-            this.Controls.Add(this.customSkill3Label);
-            this.Controls.Add(this.customSkill1Label);
             this.Controls.Add(this.spellSaveDC);
             this.Controls.Add(this.spellAttackBonus);
             this.Controls.Add(this.spellSaveDCLabel);
@@ -1902,9 +1704,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.Controls.Add(this.passiveInsight);
             this.Controls.Add(this.passiveInvestigation);
             this.Controls.Add(this.passivePerception);
-            this.Controls.Add(this.customSkill3);
-            this.Controls.Add(this.customSkill2);
-            this.Controls.Add(this.customSkill1);
             this.Controls.Add(this.persuasion);
             this.Controls.Add(this.performance);
             this.Controls.Add(this.sleightOfHand);
@@ -2021,11 +1820,6 @@ namespace CampaignGUI.Forms.PersonEditor
             ((System.ComponentModel.ISupportInitialize)(this.perceptionMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicineMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.insightMod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill5Mod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill4Mod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill3Mod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill2Mod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSkill1Mod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.persuasionMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.additionalImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempHP)).EndInit();
@@ -2116,9 +1910,6 @@ namespace CampaignGUI.Forms.PersonEditor
         private System.Windows.Forms.CheckBox sleightOfHand;
         private System.Windows.Forms.CheckBox performance;
         private System.Windows.Forms.CheckBox persuasion;
-        private System.Windows.Forms.CheckBox customSkill1;
-        private System.Windows.Forms.CheckBox customSkill2;
-        private System.Windows.Forms.CheckBox customSkill3;
         private System.Windows.Forms.NumericUpDown passivePerception;
         private System.Windows.Forms.NumericUpDown passiveInvestigation;
         private System.Windows.Forms.NumericUpDown passiveInsight;
@@ -2138,9 +1929,6 @@ namespace CampaignGUI.Forms.PersonEditor
         private System.Windows.Forms.Label spellSaveDCLabel;
         private System.Windows.Forms.NumericUpDown spellAttackBonus;
         private System.Windows.Forms.NumericUpDown spellSaveDC;
-        private System.Windows.Forms.TextBox customSkill1Label;
-        private System.Windows.Forms.TextBox customSkill3Label;
-        private System.Windows.Forms.TextBox customSkill2Label;
         private System.Windows.Forms.NumericUpDown strSaveMod;
         private System.Windows.Forms.NumericUpDown dexSaveMod;
         private System.Windows.Forms.NumericUpDown intSaveMod;
@@ -2164,15 +1952,6 @@ namespace CampaignGUI.Forms.PersonEditor
         private System.Windows.Forms.NumericUpDown perceptionMod;
         private System.Windows.Forms.NumericUpDown medicineMod;
         private System.Windows.Forms.NumericUpDown insightMod;
-        private System.Windows.Forms.TextBox customSkill4Label;
-        private System.Windows.Forms.TextBox customSkill5Label;
-        private System.Windows.Forms.CheckBox customSkill5;
-        private System.Windows.Forms.CheckBox customSkill4;
-        private System.Windows.Forms.NumericUpDown customSkill5Mod;
-        private System.Windows.Forms.NumericUpDown customSkill4Mod;
-        private System.Windows.Forms.NumericUpDown customSkill3Mod;
-        private System.Windows.Forms.NumericUpDown customSkill2Mod;
-        private System.Windows.Forms.NumericUpDown customSkill1Mod;
         private System.Windows.Forms.NumericUpDown persuasionMod;
         private System.Windows.Forms.Button upload2;
         private System.Windows.Forms.PictureBox additionalImage;

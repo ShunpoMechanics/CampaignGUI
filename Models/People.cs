@@ -13,12 +13,15 @@ namespace CampaignGUI.Models
     {
         public int ProficiencyBonus { get; set; }
         public Guid Id { get; set; }
+
         public People()
         {
             Id = Guid.NewGuid();
-            Proficiencies = new List<Proficiency>();
+            Proficiencies = new List<Proficiency>();            
             Relationships = new List<Relationship>();
             Quests = new List<Quest>();
+            string scores = File.ReadAllText("../Ability Scores.txt");
+            Proficiencies = JsonConvert.DeserializeObject<List<Proficiency>>(scores);
         }
         public static People FromFile(string content)
         {

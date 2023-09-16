@@ -11,5 +11,6 @@ namespace CampaignGUI.Models
         public string Name { get; set; }
         public bool Proficient { get; set; }
         public string Stat { get; set; }
+        public int Value { get; set; }
     }
 }
