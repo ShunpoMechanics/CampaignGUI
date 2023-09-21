@@ -13,6 +13,7 @@ namespace CampaignGUI.Models
     {
         public string Name { get; set; }
         public List<Location> Locations { get; set; }
+        public string GameType { get; set; }
         public List<Quest> Quests { get; set; }
         public List<Monster> MonsterLibrary { get; set; }
         public List<People> PeopleLibrary { get; set; }
@@ -38,11 +39,14 @@ namespace CampaignGUI.Models
             if (campaign.PeopleLibrary == null)
                 campaign.PeopleLibrary = new List<People>();
             Image image;
-            using (var bmpTemp = new Bitmap(Path.Combine(Utils.GetMapPath(), "map.jpg")))
+            if (File.Exists(Path.Combine(Utils.GetMapPath(), "map.jpg")))
             {
-                image = new Bitmap(bmpTemp);
+                using (var bmpTemp = new Bitmap(Path.Combine(Utils.GetMapPath(), "map.jpg")))
+                {
+                    image = new Bitmap(bmpTemp);
+                }
+                campaign.Map = image;
             }
-            campaign.Map = image;
             return campaign;
         }
 

@@ -32,6 +32,8 @@ namespace CampaignGUI.Forms.MainMenu
             this.campaignNameValue = new System.Windows.Forms.TextBox();
             this.campaignNameLabel = new System.Windows.Forms.Label();
             this.createCampaign = new System.Windows.Forms.Button();
+            this.gameType = new System.Windows.Forms.ComboBox();
+            this.gameTypeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // campaignNameValue
@@ -60,16 +62,36 @@ namespace CampaignGUI.Forms.MainMenu
             this.createCampaign.UseVisualStyleBackColor = true;
             this.createCampaign.Click += new System.EventHandler(this.createCampaign_Click);
             // 
+            // gameType
+            // 
+            this.gameType.FormattingEnabled = true;
+            this.gameType.Location = new System.Drawing.Point(292, 173);
+            this.gameType.Name = "gameType";
+            this.gameType.Size = new System.Drawing.Size(170, 21);
+            this.gameType.TabIndex = 3;
+            // 
+            // gameTypeLabel
+            // 
+            this.gameTypeLabel.AutoSize = true;
+            this.gameTypeLabel.Location = new System.Drawing.Point(197, 180);
+            this.gameTypeLabel.Name = "gameTypeLabel";
+            this.gameTypeLabel.Size = new System.Drawing.Size(35, 13);
+            this.gameTypeLabel.TabIndex = 4;
+            this.gameTypeLabel.Text = "Game";
+            // 
             // NewCampaign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.gameTypeLabel);
+            this.Controls.Add(this.gameType);
             this.Controls.Add(this.createCampaign);
             this.Controls.Add(this.campaignNameLabel);
             this.Controls.Add(this.campaignNameValue);
             this.Name = "NewCampaign";
             this.Text = "New Campaign";
+            this.Load += new System.EventHandler(this.NewCampaign_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,5 +102,7 @@ namespace CampaignGUI.Forms.MainMenu
         private System.Windows.Forms.TextBox campaignNameValue;
         private System.Windows.Forms.Label campaignNameLabel;
         private System.Windows.Forms.Button createCampaign;
+        private System.Windows.Forms.ComboBox gameType;
+        private System.Windows.Forms.Label gameTypeLabel;
     }
 }

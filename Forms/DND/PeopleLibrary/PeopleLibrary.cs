@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CampaignGUI.Models;
 
-namespace CampaignGUI.Forms.PeopleLibrary
+namespace CampaignGUI.Forms.DND.PeopleLibrary
 {
     public partial class PeopleLibrary : Form
     {

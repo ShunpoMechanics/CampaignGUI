@@ -8,25 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CampaignGUI.Forms.ItemLibrary
+namespace CampaignGUI.Forms.DND.MonsterLibrary
 {
-    public partial class ItemLibrary : Form
+    public partial class MonsterLibrary : Form
     {
         public CampaignDisplay CampaignDisplay { get; set; }
-        public ItemLibrary()
+        public MonsterLibrary()
         {
             InitializeComponent();
         }
 
-        private void ItemLibrary_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        public ItemLibrary(CampaignDisplay campaignDisplay)
+        public MonsterLibrary(CampaignDisplay campaignDisplay)
         {
             InitializeComponent();
             CampaignDisplay = campaignDisplay;
+        }
+        private void MonsterLibrary_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

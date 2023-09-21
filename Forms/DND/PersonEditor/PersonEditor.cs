@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CampaignGUI.Forms.PersonEditor
+namespace CampaignGUI.Forms.DND.PersonEditor
 {
     public partial class PersonEditor : Form
     {
@@ -61,7 +62,6 @@ namespace CampaignGUI.Forms.PersonEditor
             {
                 name.DataBindings.Add("Text", Person, "Name");
                 age.DataBindings.Add("Value", Person, "Age");
-                level.DataBindings.Add("Value", Person, "Level");
                 employment.DataBindings.Add("Text", Person, "Employment");
                 alignment.DataBindings.Add("SelectedItem", Person, "Alignment");
                 race.DataBindings.Add("Text", Person, "Race");
@@ -93,6 +93,8 @@ namespace CampaignGUI.Forms.PersonEditor
                 chaScore.DataBindings.Add("Value", Person, "CharismaScore");
                 chaScore.Value = Person.CharismaScore;
 
+                level.DataBindings.Add("Value", Person, "Level");
+
                 var scoreList = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains("score")).ToList();
                 scoreList.ForEach(score =>
                 {
@@ -107,7 +109,7 @@ namespace CampaignGUI.Forms.PersonEditor
 
                 description.DataBindings.Add("Text", Person, "Description");
                 inventory.DataBindings.Add("Text", Person, "Inventory");
-                attacksLabel.DataBindings.Add("Text", Person, "Attacks");
+                attacks.DataBindings.Add("Text", Person, "Attacks");
                 specialFeatures.DataBindings.Add("Text", Person, "SpecialFeatures");
                 vulnerabilities.DataBindings.Add("Text", Person, "Vulnerabilities");
                 resistances.DataBindings.Add("Text", Person, "Resistances");
@@ -133,15 +135,38 @@ namespace CampaignGUI.Forms.PersonEditor
                     var checkbox = list.Where(l => prof.Name.ToLower().Replace(" ", "").Contains(l.Name.ToLower())).FirstOrDefault();
                     var numeric = list2.Where(l => prof.Name.Substring(0, prof.Name.Length - 6).Replace(" ", "").ToLower() + "mod" == l.Name.ToLower()).FirstOrDefault();
                     if (checkbox != null)
-                        checkbox.Checked = prof.Proficient;
-                    if (numeric != null)
-                        numeric.Value = prof.Value;
+                    {
+                        var checkState = 0;
+                        if (prof.Proficient)
+                            checkState += 1;
+                        if (prof.Expertise)
+                            checkState += 1;
+                        checkbox.CheckState = (CheckState)checkState;
+                    }   
+                    if (Person.OverrideCalculations)
+                    {
+                        if (numeric != null)
+                            numeric.Value = prof.Value;
+                    }
+                    else
+                    {
+                        var score = scoreList.Where(s => s.Name.Contains(prof.Stat.Substring(0,3).ToLower())).FirstOrDefault();
+                        var mod = CalculateModifier((double)score.Value);
+                        if (numeric != null)
+                        {
+                            numeric.Value = mod;
+                            if (prof.Proficient)
+                                numeric.Value += Person.ProficiencyBonus;
+                            if (prof.Expertise)
+                                numeric.Value += Person.ProficiencyBonus;
+                        }
+                    }
                 }
 
                 proficienciesList = Person.Proficiencies;
 
                 list.ForEach(checkbox => {
-                    checkbox.CheckedChanged += new EventHandler(checkbox_Changed);
+                    checkbox.CheckStateChanged += new EventHandler(checkbox_Changed);
                 });
 
                 list2.ForEach(numeric =>
@@ -180,6 +205,28 @@ namespace CampaignGUI.Forms.PersonEditor
                         item.Enabled = true;
                     });
                 }
+
+                var path = Path.Combine(Utils.GetPeoplePath(), Person.Id.ToString(), "photo1.jpg");
+                if (File.Exists(path))
+                {
+                    Image image = Image.FromFile(path);
+                    image = Utils.ResizeImage(image, 257, 382);
+                    Person.Photo = image;
+                    peopleImage.Image = image;
+                    peopleImage.Width = image.Width;
+                    peopleImage.Height = image.Height;
+                }
+
+                path = Path.Combine(Utils.GetPeoplePath(), Person.Id.ToString(), "photo2.jpg");
+                if (File.Exists(path))
+                {
+                    Image image2 = Image.FromFile(path);
+                    image2 = Utils.ResizeImage(image2, 257, 220);
+                    Person.Photo = image2;
+                    additionalImage.Image = image2;
+                    additionalImage.Width = image2.Width;
+                    additionalImage.Height = image2.Height;
+                }
             }
             catch (Exception ex)
             {
@@ -189,12 +236,12 @@ namespace CampaignGUI.Forms.PersonEditor
 
         private void upload2_Click(object sender, EventArgs e)
         {
-
+            additionalImage_Click(sender, e);
         }
 
         private void upload_Click(object sender, EventArgs e)
         {
-
+            peopleImage_Click(sender, e);
         }
 
         private void proficiency_Changed(object sender, EventArgs e)
@@ -242,8 +289,10 @@ namespace CampaignGUI.Forms.PersonEditor
                         NumericUpDown num = list2.Where(n => n.Name.ToLower().Substring(0, n.Name.Length - 3) == item.Name.ToLower()).FirstOrDefault();
                         num.ValueChanged -= new EventHandler(proficiency_Changed);
                         var value = 0;
-                        if (item.Checked)
+                        if (item.CheckState == CheckState.Checked)
                             value += Person.ProficiencyBonus;
+                        if (item.CheckState == CheckState.Indeterminate)
+                            value += Person.ProficiencyBonus*2;
                         value += int.Parse(mod.Text);
                         num.Value = value;
                         num.ValueChanged += new EventHandler(proficiency_Changed);
@@ -268,62 +317,125 @@ namespace CampaignGUI.Forms.PersonEditor
 
         private void checkbox_Changed(object sender, EventArgs e)
         {
-            CheckBox ele = sender as CheckBox;
-            string eleName = ele.Name;
-            Stat stat = _stats.Where(s => eleName.ToLower().Contains(s.Acroynm)).FirstOrDefault();
-            bool isSave = stat != null;
-            if (isSave && eleName != "intimidation")
-                eleName = stat.Name;
-            var prof = proficienciesList.Where(l => l.Name.ToLower().Replace(" ", "").Contains(eleName.ToLower())).FirstOrDefault();
-            var index = proficienciesList.IndexOf(prof);
-            if( prof != null)
+            if (!Person.OverrideCalculations)
             {
-                prof.Proficient = !prof.Proficient;
-                NumericUpDown num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(eleName.ToLower())).FirstOrDefault();
-                if(isSave)
-                    num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(stat.Acroynm.ToLower()) && !n.Name.ToLower().Contains("intimidation")).FirstOrDefault();
-                if (prof.Proficient)
-                {                                        
-                    num.Value += Person.ProficiencyBonus;
-                    prof.Value += Person.ProficiencyBonus;                    
-                }
-                else
+                CheckBox ele = sender as CheckBox;
+                string eleName = ele.Name;
+                Stat stat = _stats.Where(s => eleName.ToLower().Contains(s.Acroynm)).FirstOrDefault();
+                bool isSave = stat != null;
+                if (isSave && eleName != "intimidation")
+                    eleName = stat.Name;
+                var prof = proficienciesList.Where(l => l.Name.ToLower().Replace(" ", "").Contains(eleName.ToLower())).FirstOrDefault();
+                var index = proficienciesList.IndexOf(prof);
+                if (prof != null)
                 {
-                    num.Value -= Person.ProficiencyBonus;
-                    prof.Value -= Person.ProficiencyBonus;
+                    prof.Proficient = ele.CheckState == CheckState.Checked || ele.CheckState == CheckState.Indeterminate;
+                    prof.Expertise = ele.CheckState == CheckState.Indeterminate;
+
+                    NumericUpDown num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(eleName.ToLower())).FirstOrDefault();
+                    if (isSave)
+                        num = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains(stat.Acroynm.ToLower()) && !n.Name.ToLower().Contains("intimidation")).FirstOrDefault();
+                    if (prof.Proficient || prof.Expertise)
+                    {
+                        num.Value += Person.ProficiencyBonus;
+                        prof.Value += Person.ProficiencyBonus;
+                    }
+                    else
+                    {
+                        num.Value -= Person.ProficiencyBonus*2;
+                        prof.Value -= Person.ProficiencyBonus*2;
+
+                        proficienciesList[index] = prof;
+                    }
                 }
-                proficienciesList[index] = prof;
             }
         }
 
-        private void dexMod_TextChanged(object sender, EventArgs e)
+        private void peopleImage_Click(object sender, EventArgs e)
         {
+            string imageLocation = "";
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(.*jpg)|*.jpg| PNG files(.*png)|*.png| All Files(*.*)|*.*";
 
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+
+                    //image1.ImageLocation = imageLocation;
+                    Image image = Image.FromFile(dialog.FileName);
+                    image = Utils.ResizeImage(image, 257, 382);                    
+                    Person.Photo = image;
+                    peopleImage.Image = image;
+                    peopleImage.Width = image.Width;
+                    peopleImage.Height = image.Height;
+                    Utils.CopyUploadedImage(imageLocation, Path.Combine(Utils.GetPeoplePath(), Person.Id.ToString()), "photo1.jpg");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void strMod_TextChanged(object sender, EventArgs e)
+        private void additionalImage_Click(object sender, EventArgs e)
         {
+            string imageLocation = "";
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(.*jpg)|*.jpg| PNG files(.*png)|*.png| All Files(*.*)|*.*";
 
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+
+                    //image1.ImageLocation = imageLocation;
+                    Image image = Image.FromFile(dialog.FileName);
+                    image = Utils.ResizeImage(image, 257, 220);
+
+                    Person.Photo = image;
+                    additionalImage.Image = image;
+                    additionalImage.Width = image.Width;
+                    additionalImage.Height = image.Height;
+                    Utils.CopyUploadedImage(imageLocation, Path.Combine(Utils.GetPeoplePath(), Person.Id.ToString()), "photo2.jpg");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void conMod_TextChanged(object sender, EventArgs e)
+        private void level_ValueChanged(object sender, EventArgs e)
         {
-
+            var ele = sender as NumericUpDown;
+            var proficiencyBonus = People.CalculateProficiencyBonus((int)ele.Value);
+            Person.ProficiencyBonus = proficiencyBonus;
+            var list = Controls.OfType<NumericUpDown>().Where(m => m.Name.Contains("Score")).ToList();
+            list.ForEach(item => {
+                item.Value -= 1;
+                item.Value += 1;
+            }); 
         }
 
-        private void intMod_TextChanged(object sender, EventArgs e)
+        private void flyingSpeed_ValueChanged(object sender, EventArgs e)
         {
-
+            var ele = sender as NumericUpDown;
+            Person.Speeds[0] = (int)ele.Value;
         }
 
-        private void wisMod_TextChanged(object sender, EventArgs e)
+        private void walkSpeed_ValueChanged(object sender, EventArgs e)
         {
-
+            var ele = sender as NumericUpDown;
+            Person.Speeds[1] = (int)ele.Value;
         }
 
-        private void chaMod_TextChanged(object sender, EventArgs e)
+        private void swimSpeed_ValueChanged(object sender, EventArgs e)
         {
-
+            var ele = sender as NumericUpDown;
+            Person.Speeds[2] = (int)ele.Value;
         }
     }
 }

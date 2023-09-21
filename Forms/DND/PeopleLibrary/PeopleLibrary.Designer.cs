@@ -1,5 +1,5 @@
 ﻿
-namespace CampaignGUI.Forms.PeopleLibrary
+namespace CampaignGUI.Forms.DND.PeopleLibrary
 {
     partial class PeopleLibrary
     {

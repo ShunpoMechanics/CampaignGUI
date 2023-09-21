@@ -1,5 +1,5 @@
 ﻿
-namespace CampaignGUI.Forms.PersonEditor
+namespace CampaignGUI.Forms.DND.PersonEditor
 {
     partial class PersonEditor
     {
@@ -261,6 +261,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.peopleImage.Size = new System.Drawing.Size(257, 382);
             this.peopleImage.TabIndex = 1;
             this.peopleImage.TabStop = false;
+            this.peopleImage.Click += new System.EventHandler(this.peopleImage_Click);
             // 
             // peopleNameLabel
             // 
@@ -419,6 +420,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.flyingSpeed.Name = "flyingSpeed";
             this.flyingSpeed.Size = new System.Drawing.Size(46, 20);
             this.flyingSpeed.TabIndex = 21;
+            this.flyingSpeed.ValueChanged += new System.EventHandler(this.flyingSpeed_ValueChanged);
             // 
             // walkSpeed
             // 
@@ -426,6 +428,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.walkSpeed.Name = "walkSpeed";
             this.walkSpeed.Size = new System.Drawing.Size(46, 20);
             this.walkSpeed.TabIndex = 22;
+            this.walkSpeed.ValueChanged += new System.EventHandler(this.walkSpeed_ValueChanged);
             // 
             // swimSpeed
             // 
@@ -433,6 +436,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.swimSpeed.Name = "swimSpeed";
             this.swimSpeed.Size = new System.Drawing.Size(46, 20);
             this.swimSpeed.TabIndex = 23;
+            this.swimSpeed.ValueChanged += new System.EventHandler(this.swimSpeed_ValueChanged);
             // 
             // flyLabel
             // 
@@ -607,11 +611,11 @@ namespace CampaignGUI.Forms.PersonEditor
             // proficienciesLabel
             // 
             this.proficienciesLabel.AutoSize = true;
-            this.proficienciesLabel.Location = new System.Drawing.Point(467, 162);
+            this.proficienciesLabel.Location = new System.Drawing.Point(470, 168);
             this.proficienciesLabel.Name = "proficienciesLabel";
-            this.proficienciesLabel.Size = new System.Drawing.Size(67, 13);
+            this.proficienciesLabel.Size = new System.Drawing.Size(188, 13);
             this.proficienciesLabel.TabIndex = 42;
-            this.proficienciesLabel.Text = "Proficiencies";
+            this.proficienciesLabel.Text = "Proficiencies (Click twice for Expertise)";
             // 
             // levelLabel
             // 
@@ -631,6 +635,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.overrideMods.TabIndex = 45;
             this.overrideMods.Text = "Override Calculated?";
             this.overrideMods.UseVisualStyleBackColor = true;
+            this.overrideMods.Visible = false;
             this.overrideMods.CheckedChanged += new System.EventHandler(this.overrideMods_CheckedChanged);
             // 
             // strMod
@@ -640,7 +645,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.strMod.Name = "strMod";
             this.strMod.Size = new System.Drawing.Size(57, 20);
             this.strMod.TabIndex = 46;
-            this.strMod.TextChanged += new System.EventHandler(this.strMod_TextChanged);
             // 
             // dexMod
             // 
@@ -649,7 +653,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.dexMod.Name = "dexMod";
             this.dexMod.Size = new System.Drawing.Size(57, 20);
             this.dexMod.TabIndex = 47;
-            this.dexMod.TextChanged += new System.EventHandler(this.dexMod_TextChanged);
             // 
             // conMod
             // 
@@ -658,7 +661,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.conMod.Name = "conMod";
             this.conMod.Size = new System.Drawing.Size(57, 20);
             this.conMod.TabIndex = 48;
-            this.conMod.TextChanged += new System.EventHandler(this.conMod_TextChanged);
             // 
             // wisMod
             // 
@@ -667,7 +669,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.wisMod.Name = "wisMod";
             this.wisMod.Size = new System.Drawing.Size(57, 20);
             this.wisMod.TabIndex = 49;
-            this.wisMod.TextChanged += new System.EventHandler(this.wisMod_TextChanged);
             // 
             // intMod
             // 
@@ -676,7 +677,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intMod.Name = "intMod";
             this.intMod.Size = new System.Drawing.Size(57, 20);
             this.intMod.TabIndex = 50;
-            this.intMod.TextChanged += new System.EventHandler(this.intMod_TextChanged);
             // 
             // chaMod
             // 
@@ -685,7 +685,6 @@ namespace CampaignGUI.Forms.PersonEditor
             this.chaMod.Name = "chaMod";
             this.chaMod.Size = new System.Drawing.Size(57, 20);
             this.chaMod.TabIndex = 51;
-            this.chaMod.TextChanged += new System.EventHandler(this.chaMod_TextChanged);
             // 
             // strSave
             // 
@@ -695,6 +694,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.strSave.Size = new System.Drawing.Size(166, 17);
             this.strSave.TabIndex = 52;
             this.strSave.Text = "Strength Saving Throw (STR)";
+            this.strSave.ThreeState = true;
             this.strSave.UseVisualStyleBackColor = true;
             // 
             // dexSave
@@ -705,6 +705,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.dexSave.Size = new System.Drawing.Size(167, 17);
             this.dexSave.TabIndex = 53;
             this.dexSave.Text = "Dexterity Saving Throw (DEX)";
+            this.dexSave.ThreeState = true;
             this.dexSave.UseVisualStyleBackColor = true;
             // 
             // conSave
@@ -715,6 +716,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.conSave.Size = new System.Drawing.Size(182, 17);
             this.conSave.TabIndex = 54;
             this.conSave.Text = "Constitution Saving Throw (CON)";
+            this.conSave.ThreeState = true;
             this.conSave.UseVisualStyleBackColor = true;
             // 
             // wisSave
@@ -725,6 +727,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.wisSave.Size = new System.Drawing.Size(163, 17);
             this.wisSave.TabIndex = 55;
             this.wisSave.Text = "Wisdom Saving Throw (WIS)";
+            this.wisSave.ThreeState = true;
             this.wisSave.UseVisualStyleBackColor = true;
             // 
             // intSave
@@ -735,6 +738,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intSave.Size = new System.Drawing.Size(176, 17);
             this.intSave.TabIndex = 56;
             this.intSave.Text = "Intelligence Saving Throw (INT)";
+            this.intSave.ThreeState = true;
             this.intSave.UseVisualStyleBackColor = true;
             // 
             // chaSave
@@ -745,6 +749,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.chaSave.Size = new System.Drawing.Size(169, 17);
             this.chaSave.TabIndex = 57;
             this.chaSave.Text = "Charisma Saving Throw (CHA)";
+            this.chaSave.ThreeState = true;
             this.chaSave.UseVisualStyleBackColor = true;
             // 
             // athletics
@@ -755,6 +760,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.athletics.Size = new System.Drawing.Size(97, 17);
             this.athletics.TabIndex = 58;
             this.athletics.Text = "Athletics (STR)";
+            this.athletics.ThreeState = true;
             this.athletics.UseVisualStyleBackColor = true;
             // 
             // acrobatics
@@ -765,6 +771,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.acrobatics.Size = new System.Drawing.Size(107, 17);
             this.acrobatics.TabIndex = 59;
             this.acrobatics.Text = "Acrobatics (DEX)";
+            this.acrobatics.ThreeState = true;
             this.acrobatics.UseVisualStyleBackColor = true;
             // 
             // intimidation
@@ -775,6 +782,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.intimidation.Size = new System.Drawing.Size(110, 17);
             this.intimidation.TabIndex = 60;
             this.intimidation.Text = "Intimidation (CHA)";
+            this.intimidation.ThreeState = true;
             this.intimidation.UseVisualStyleBackColor = true;
             // 
             // deception
@@ -785,6 +793,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.deception.Size = new System.Drawing.Size(106, 17);
             this.deception.TabIndex = 61;
             this.deception.Text = "Deception (CHA)";
+            this.deception.ThreeState = true;
             this.deception.UseVisualStyleBackColor = true;
             // 
             // nature
@@ -795,6 +804,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.nature.Size = new System.Drawing.Size(85, 17);
             this.nature.TabIndex = 62;
             this.nature.Text = "Nature (INT)";
+            this.nature.ThreeState = true;
             this.nature.UseVisualStyleBackColor = true;
             // 
             // arcana
@@ -805,6 +815,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.arcana.Size = new System.Drawing.Size(87, 17);
             this.arcana.TabIndex = 63;
             this.arcana.Text = "Arcana (INT)";
+            this.arcana.ThreeState = true;
             this.arcana.UseVisualStyleBackColor = true;
             // 
             // survival
@@ -815,6 +826,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.survival.Size = new System.Drawing.Size(94, 17);
             this.survival.TabIndex = 64;
             this.survival.Text = "Survival (WIS)";
+            this.survival.ThreeState = true;
             this.survival.UseVisualStyleBackColor = true;
             // 
             // medicine
@@ -825,6 +837,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.medicine.Size = new System.Drawing.Size(99, 17);
             this.medicine.TabIndex = 65;
             this.medicine.Text = "Medicine (WIS)";
+            this.medicine.ThreeState = true;
             this.medicine.UseVisualStyleBackColor = true;
             // 
             // insight
@@ -835,6 +848,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.insight.Size = new System.Drawing.Size(87, 17);
             this.insight.TabIndex = 66;
             this.insight.Text = "Insight (WIS)";
+            this.insight.ThreeState = true;
             this.insight.UseVisualStyleBackColor = true;
             // 
             // religion
@@ -845,6 +859,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.religion.Size = new System.Drawing.Size(91, 17);
             this.religion.TabIndex = 67;
             this.religion.Text = "Religion (INT)";
+            this.religion.ThreeState = true;
             this.religion.UseVisualStyleBackColor = true;
             // 
             // investigation
@@ -855,6 +870,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.investigation.Size = new System.Drawing.Size(113, 17);
             this.investigation.TabIndex = 68;
             this.investigation.Text = "Investigation (INT)";
+            this.investigation.ThreeState = true;
             this.investigation.UseVisualStyleBackColor = true;
             // 
             // history
@@ -865,6 +881,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.history.Size = new System.Drawing.Size(85, 17);
             this.history.TabIndex = 69;
             this.history.Text = "History (INT)";
+            this.history.ThreeState = true;
             this.history.UseVisualStyleBackColor = true;
             // 
             // perception
@@ -875,6 +892,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.perception.Size = new System.Drawing.Size(107, 17);
             this.perception.TabIndex = 70;
             this.perception.Text = "Perception (WIS)";
+            this.perception.ThreeState = true;
             // 
             // animalHandling
             // 
@@ -884,6 +902,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.animalHandling.Size = new System.Drawing.Size(132, 17);
             this.animalHandling.TabIndex = 71;
             this.animalHandling.Text = "Animal Handling (WIS)";
+            this.animalHandling.ThreeState = true;
             this.animalHandling.UseVisualStyleBackColor = true;
             // 
             // stealth
@@ -894,6 +913,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.stealth.Size = new System.Drawing.Size(90, 17);
             this.stealth.TabIndex = 72;
             this.stealth.Text = "Stealth (DEX)";
+            this.stealth.ThreeState = true;
             this.stealth.UseVisualStyleBackColor = true;
             // 
             // sleightOfHand
@@ -904,6 +924,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.sleightOfHand.Size = new System.Drawing.Size(130, 17);
             this.sleightOfHand.TabIndex = 73;
             this.sleightOfHand.Text = "Sleight of Hand (DEX)";
+            this.sleightOfHand.ThreeState = true;
             this.sleightOfHand.UseVisualStyleBackColor = true;
             // 
             // performance
@@ -914,6 +935,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.performance.Size = new System.Drawing.Size(117, 17);
             this.performance.TabIndex = 74;
             this.performance.Text = "Performance (CHA)";
+            this.performance.ThreeState = true;
             this.performance.UseVisualStyleBackColor = true;
             // 
             // persuasion
@@ -924,6 +946,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.persuasion.Size = new System.Drawing.Size(109, 17);
             this.persuasion.TabIndex = 75;
             this.persuasion.Text = "Persuasion (CHA)";
+            this.persuasion.ThreeState = true;
             // 
             // passivePerception
             // 
@@ -1511,6 +1534,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.additionalImage.Size = new System.Drawing.Size(257, 220);
             this.additionalImage.TabIndex = 136;
             this.additionalImage.TabStop = false;
+            this.additionalImage.Click += new System.EventHandler(this.additionalImage_Click);
             // 
             // alignmentLabel
             // 
@@ -1872,6 +1896,7 @@ namespace CampaignGUI.Forms.PersonEditor
             this.level.Name = "level";
             this.level.Size = new System.Drawing.Size(44, 20);
             this.level.TabIndex = 179;
+            this.level.ValueChanged += new System.EventHandler(this.level_ValueChanged);
             // 
             // save
             // 

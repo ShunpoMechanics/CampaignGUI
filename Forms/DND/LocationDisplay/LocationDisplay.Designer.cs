@@ -1,5 +1,5 @@
 ﻿
-namespace CampaignGUI.Forms.LocationDisplay
+namespace CampaignGUI.Forms.DND.LocationDisplay
 {
     partial class LocationDisplay
     {

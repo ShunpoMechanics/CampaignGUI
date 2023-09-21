@@ -55,22 +55,28 @@
     <Compile Include="Forms\CampaignDisplay\CampaignDisplay.Designer.cs">
       <DependentUpon>CampaignDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ItemLibrary\ItemLibrary.cs">
+    <Compile Include="Forms\FFXIV\PeopleLibrary\FFXIVPeopleLibrary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ItemLibrary\ItemLibrary.Designer.cs">
+    <Compile Include="Forms\FFXIV\PeopleLibrary\FFXIVPeopleLibrary.Designer.cs">
+      <DependentUpon>FFXIVPeopleLibrary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DND\ItemLibrary\ItemLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DND\ItemLibrary\ItemLibrary.Designer.cs">
       <DependentUpon>ItemLibrary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PeopleLibrary\PeopleLibrary.cs">
+    <Compile Include="Forms\DND\PeopleLibrary\PeopleLibrary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PeopleLibrary\PeopleLibrary.Designer.cs">
+    <Compile Include="Forms\DND\PeopleLibrary\PeopleLibrary.Designer.cs">
       <DependentUpon>PeopleLibrary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LocationDisplay\LocationDisplay.cs">
+    <Compile Include="Forms\DND\LocationDisplay\LocationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LocationDisplay\LocationDisplay.Designer.cs">
+    <Compile Include="Forms\DND\LocationDisplay\LocationDisplay.Designer.cs">
       <DependentUpon>LocationDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainMenu\MainMenu.cs">
@@ -85,28 +91,28 @@
     <Compile Include="Forms\MainMenu\NewCampaign.Designer.cs">
       <DependentUpon>NewCampaign.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MonsterLibrary\MonsterLibrary.cs">
+    <Compile Include="Forms\DND\MonsterLibrary\MonsterLibrary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MonsterLibrary\MonsterLibrary.Designer.cs">
+    <Compile Include="Forms\DND\MonsterLibrary\MonsterLibrary.Designer.cs">
       <DependentUpon>MonsterLibrary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PersonEditor\PersonEditor.cs">
+    <Compile Include="Forms\DND\PersonEditor\PersonEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PersonEditor\PersonEditor.Designer.cs">
+    <Compile Include="Forms\DND\PersonEditor\PersonEditor.Designer.cs">
       <DependentUpon>PersonEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\QuestLibrary\QuestLibrary.cs">
+    <Compile Include="Forms\DND\QuestLibrary\QuestLibrary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\QuestLibrary\QuestLibrary.Designer.cs">
+    <Compile Include="Forms\DND\QuestLibrary\QuestLibrary.Designer.cs">
       <DependentUpon>QuestLibrary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Relationships\Relationships.cs">
+    <Compile Include="Forms\DND\Relationships\Relationships.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Relationships\Relationships.Designer.cs">
+    <Compile Include="Forms\DND\Relationships\Relationships.Designer.cs">
       <DependentUpon>Relationships.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Campaign.cs" />
@@ -125,13 +131,13 @@
     <EmbeddedResource Include="Forms\CampaignDisplay\CampaignDisplay.resx">
       <DependentUpon>CampaignDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ItemLibrary\ItemLibrary.resx">
+    <EmbeddedResource Include="Forms\DND\ItemLibrary\ItemLibrary.resx">
       <DependentUpon>ItemLibrary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PeopleLibrary\PeopleLibrary.resx">
+    <EmbeddedResource Include="Forms\DND\PeopleLibrary\PeopleLibrary.resx">
       <DependentUpon>PeopleLibrary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LocationDisplay\LocationDisplay.resx">
+    <EmbeddedResource Include="Forms\DND\LocationDisplay\LocationDisplay.resx">
       <DependentUpon>LocationDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu\MainMenu.resx">
@@ -140,13 +146,13 @@
     <EmbeddedResource Include="Forms\MainMenu\NewCampaign.resx">
       <DependentUpon>NewCampaign.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MonsterLibrary\MonsterLibrary.resx">
+    <EmbeddedResource Include="Forms\DND\MonsterLibrary\MonsterLibrary.resx">
       <DependentUpon>MonsterLibrary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PersonEditor\PersonEditor.resx">
+    <EmbeddedResource Include="Forms\DND\PersonEditor\PersonEditor.resx">
       <DependentUpon>PersonEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\QuestLibrary\QuestLibrary.resx">
+    <EmbeddedResource Include="Forms\DND\QuestLibrary\QuestLibrary.resx">
       <DependentUpon>QuestLibrary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -171,6 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Cyberpunk\CyberpunkPeopleLibrary\" />
+    <Folder Include="Forms\LOT5R\LOT5RPeopleLibrary\" />
+    <Folder Include="Forms\Pathfinder\PathfinderPeopleLibrary\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

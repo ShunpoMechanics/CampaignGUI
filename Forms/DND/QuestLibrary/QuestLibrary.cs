@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CampaignGUI.Forms.QuestLibrary
+namespace CampaignGUI.Forms.DND.QuestLibrary
 {
     public partial class QuestLibrary : Form
     {

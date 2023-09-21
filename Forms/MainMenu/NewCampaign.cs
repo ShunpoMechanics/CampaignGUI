@@ -24,32 +24,41 @@ namespace CampaignGUI.Forms.MainMenu
             try
             {
                 string campaignName = campaignNameValue.Text;
-                Campaign campaign = new Campaign();
-                campaign.Name = campaignName;
+                if (campaignName != null && campaignName != "")
+                {
+                    Campaign campaign = new Campaign();
+                    campaign.Name = campaignName;
+                    campaign.GameType = gameType.SelectedItem.ToString();
 
-                var path = Utils.GetDocumentsPath();
-                if(!Directory.Exists(path))
-                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI/Campaigns"));
+                    var path = Utils.GetDocumentsPath();
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI/Campaigns"));
 
-                Utils.SaveLastOpened(campaignName);
+                    Utils.SaveLastOpened(campaignName);
 
-                if (!Directory.Exists(Utils.GetLocationsPath()))
-                    Directory.CreateDirectory(Utils.GetLocationsPath());
-                if (!Directory.Exists(Utils.GetPeoplePath()))
-                    Directory.CreateDirectory(Utils.GetPeoplePath());
-                if (!Directory.Exists(Utils.GetMonstersPath()))
-                    Directory.CreateDirectory(Utils.GetMonstersPath());
+                    if (!Directory.Exists(Utils.GetLocationsPath()))
+                        Directory.CreateDirectory(Utils.GetLocationsPath());
+                    if (!Directory.Exists(Utils.GetPeoplePath()))
+                        Directory.CreateDirectory(Utils.GetPeoplePath());
+                    if (!Directory.Exists(Utils.GetMonstersPath()))
+                        Directory.CreateDirectory(Utils.GetMonstersPath());
 
-                Utils.SaveFile(ref campaign, Path.Combine(path, campaignName + ".txt"));
+                    Utils.SaveFile(ref campaign, Path.Combine(path, campaignName + ".txt"));
 
-                CampaignDisplay display = new CampaignDisplay(campaign, campaignName+".txt");
-                this.Hide();
-                display.ShowDialog();
+                    CampaignDisplay display = new CampaignDisplay(campaign, campaignName + ".txt");
+                    this.Hide();
+                    display.ShowDialog();
+                }
             } 
             catch (Exception ex)
             {
                 MessageBox.Show("An Error Occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void NewCampaign_Load(object sender, EventArgs e)
+        {
+            gameType.Items.AddRange(Utils.GetGameSystems().ToArray());
         }
     }
 }

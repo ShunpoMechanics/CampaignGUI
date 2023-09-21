@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CampaignGUI.Forms.LocationDisplay
+namespace CampaignGUI.Forms.DND.LocationDisplay
 {
     public partial class LocationDisplay : Form
     {

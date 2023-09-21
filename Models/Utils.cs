@@ -14,6 +14,7 @@ namespace CampaignGUI.Models
 {
     public static class Utils
     {
+        private static List<string> GameSystems { get; } = new List<string>() { "DND 5E/One DND", "FFXIV Tabletop", "Pathfinder 2E", "Legend Of The 5 Rings", "Star Wars TRPG", "Cyberpunk Red" };
         public static string GetDocumentsPath()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CampaignGUI\\Campaigns");
@@ -148,7 +149,7 @@ namespace CampaignGUI.Models
             exists = File.Exists(Path.Combine(localFilePath, filename));
             if (exists)
                 File.Delete(Path.Combine(localFilePath, filename));
-            File.Copy(originalFilePath, Path.Combine(localFilePath, "map.jpg"));
+            File.Copy(originalFilePath, Path.Combine(localFilePath, filename));
         }
 
         public static Bitmap ResizeImage(Image image, int width, int height)
@@ -174,6 +175,11 @@ namespace CampaignGUI.Models
             }
 
             return destImage;
+        }
+
+        public static List<string> GetGameSystems()
+        {
+            return GameSystems;
         }
     }
 

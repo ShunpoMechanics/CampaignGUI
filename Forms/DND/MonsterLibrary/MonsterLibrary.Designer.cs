@@ -1,7 +1,7 @@
 ﻿
-namespace CampaignGUI.Forms.QuestLibrary
+namespace CampaignGUI.Forms.DND.MonsterLibrary
 {
-    partial class QuestLibrary
+    partial class MonsterLibrary
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@ namespace CampaignGUI.Forms.QuestLibrary
         {
             this.SuspendLayout();
             // 
-            // QuestLibrary
+            // MonsterLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "QuestLibrary";
-            this.Text = "Quest Library";
-            this.Load += new System.EventHandler(this.QuestLibrary_Load);
+            this.Name = "MonsterLibrary";
+            this.Text = "Monster Library";
+            this.Load += new System.EventHandler(this.MonsterLibrary_Load);
             this.ResumeLayout(false);
 
         }

@@ -39,6 +39,8 @@ namespace CampaignGUI
             this.monsterLibrary = new System.Windows.Forms.Button();
             this.itemLibrary = new System.Windows.Forms.Button();
             this.questLibrary = new System.Windows.Forms.Button();
+            this.gameType = new System.Windows.Forms.TextBox();
+            this.gameTypeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.image1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +103,7 @@ namespace CampaignGUI
             // 
             // peopleLibrary
             // 
-            this.peopleLibrary.Location = new System.Drawing.Point(12, 171);
+            this.peopleLibrary.Location = new System.Drawing.Point(12, 195);
             this.peopleLibrary.Name = "peopleLibrary";
             this.peopleLibrary.Size = new System.Drawing.Size(98, 23);
             this.peopleLibrary.TabIndex = 6;
@@ -111,7 +113,7 @@ namespace CampaignGUI
             // 
             // monsterLibrary
             // 
-            this.monsterLibrary.Location = new System.Drawing.Point(116, 171);
+            this.monsterLibrary.Location = new System.Drawing.Point(116, 195);
             this.monsterLibrary.Name = "monsterLibrary";
             this.monsterLibrary.Size = new System.Drawing.Size(96, 23);
             this.monsterLibrary.TabIndex = 7;
@@ -121,7 +123,7 @@ namespace CampaignGUI
             // 
             // itemLibrary
             // 
-            this.itemLibrary.Location = new System.Drawing.Point(12, 200);
+            this.itemLibrary.Location = new System.Drawing.Point(12, 224);
             this.itemLibrary.Name = "itemLibrary";
             this.itemLibrary.Size = new System.Drawing.Size(98, 23);
             this.itemLibrary.TabIndex = 8;
@@ -131,7 +133,7 @@ namespace CampaignGUI
             // 
             // questLibrary
             // 
-            this.questLibrary.Location = new System.Drawing.Point(116, 200);
+            this.questLibrary.Location = new System.Drawing.Point(116, 224);
             this.questLibrary.Name = "questLibrary";
             this.questLibrary.Size = new System.Drawing.Size(96, 23);
             this.questLibrary.TabIndex = 9;
@@ -139,11 +141,30 @@ namespace CampaignGUI
             this.questLibrary.UseVisualStyleBackColor = true;
             this.questLibrary.Click += new System.EventHandler(this.questLibrary_Click);
             // 
+            // gameType
+            // 
+            this.gameType.Enabled = false;
+            this.gameType.Location = new System.Drawing.Point(14, 166);
+            this.gameType.Name = "gameType";
+            this.gameType.Size = new System.Drawing.Size(198, 20);
+            this.gameType.TabIndex = 10;
+            // 
+            // gameTypeLabel
+            // 
+            this.gameTypeLabel.AutoSize = true;
+            this.gameTypeLabel.Location = new System.Drawing.Point(15, 145);
+            this.gameTypeLabel.Name = "gameTypeLabel";
+            this.gameTypeLabel.Size = new System.Drawing.Size(72, 13);
+            this.gameTypeLabel.TabIndex = 11;
+            this.gameTypeLabel.Text = "Game System";
+            // 
             // CampaignDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1625, 608);
+            this.Controls.Add(this.gameTypeLabel);
+            this.Controls.Add(this.gameType);
             this.Controls.Add(this.questLibrary);
             this.Controls.Add(this.itemLibrary);
             this.Controls.Add(this.monsterLibrary);
@@ -175,6 +196,8 @@ namespace CampaignGUI
         private System.Windows.Forms.Button monsterLibrary;
         private System.Windows.Forms.Button itemLibrary;
         private System.Windows.Forms.Button questLibrary;
+        private System.Windows.Forms.TextBox gameType;
+        private System.Windows.Forms.Label gameTypeLabel;
     }
 }
 

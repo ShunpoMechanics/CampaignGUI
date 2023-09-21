@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace CampaignGUI.Models
     {
         public bool OverrideCalculations { get; set; }
         public string Name { get; set; }
+        [JsonIgnore]
         public Image Photo { get; set; }
+        [JsonIgnore]
         public Image SecondPhoto { get; set; }
         public string Employment { get; set; }
         public List<Relationship> Relationships { get; set; }

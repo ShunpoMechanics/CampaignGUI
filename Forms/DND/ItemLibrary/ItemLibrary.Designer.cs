@@ -1,7 +1,7 @@
 ﻿
-namespace CampaignGUI.Forms.Relationships
+namespace CampaignGUI.Forms.DND.ItemLibrary
 {
-    partial class Relationships
+    partial class ItemLibrary
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,18 @@ namespace CampaignGUI.Forms.Relationships
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ItemLibrary
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Relationships";
+            this.Name = "ItemLibrary";
+            this.Text = "Item Library";
+            this.Load += new System.EventHandler(this.ItemLibrary_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿
-namespace CampaignGUI.Forms.ItemLibrary
+namespace CampaignGUI.Forms.FFXIV.PeopleLibrary
 {
-    partial class ItemLibrary
+    partial class FFXIVPeopleLibrary
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,10 @@ namespace CampaignGUI.Forms.ItemLibrary
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // ItemLibrary
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "ItemLibrary";
-            this.Text = "Item Library";
-            this.Load += new System.EventHandler(this.ItemLibrary_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "FFXIVPeopleLibrary";
         }
 
         #endregion

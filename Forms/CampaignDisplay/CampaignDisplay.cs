@@ -1,8 +1,9 @@
-﻿using CampaignGUI.Forms.ItemLibrary;
-using CampaignGUI.Forms.LocationDisplay;
-using CampaignGUI.Forms.MonsterLibrary;
-using CampaignGUI.Forms.PeopleLibrary;
-using CampaignGUI.Forms.QuestLibrary;
+﻿using CampaignGUI.Forms.FFXIV.PeopleLibrary;
+using CampaignGUI.Forms.DND.ItemLibrary;
+using CampaignGUI.Forms.DND.LocationDisplay;
+using CampaignGUI.Forms.DND.MonsterLibrary;
+using CampaignGUI.Forms.DND.PeopleLibrary;
+using CampaignGUI.Forms.DND.QuestLibrary;
 using CampaignGUI.Models;
 using Newtonsoft.Json;
 using System;
@@ -34,6 +35,7 @@ namespace CampaignGUI
         private void Form1_Load(object sender, EventArgs e)
         {
             campaignNameValue.Text = Campaign.Name;
+            gameType.Text = Campaign.GameType;
             Utils.SaveLastOpened(Campaign.Name);
             if (Campaign.Map != null)
                 Utils.ResizeDialogToImage(this, image1, Campaign.Map);
@@ -195,8 +197,21 @@ namespace CampaignGUI
 
         private void peopleLibrary_Click(object sender, EventArgs e)
         {
-            PeopleLibrary pl = new PeopleLibrary(this);
-            pl.Show();
+            var type = Campaign.GameType;
+            switch (type)
+            {
+                case "DND 5E/One DND":
+                    PeopleLibrary pl = new PeopleLibrary(this);
+                    pl.Show();
+                    break;
+                case "FFXIV Tabletop":
+                    FFXIVPeopleLibrary ffpl = new FFXIVPeopleLibrary();
+                    ffpl.Show();
+                    break;
+            }
+
+                
+            
         }
 
         private void monsterLibrary_Click(object sender, EventArgs e)
