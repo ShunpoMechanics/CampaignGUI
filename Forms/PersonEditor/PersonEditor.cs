@@ -81,11 +81,17 @@ namespace CampaignGUI.Forms.PersonEditor
                 spellSaveDC.DataBindings.Add("Value", Person, "SpellSaveDC");
 
                 strScore.DataBindings.Add("Value", Person, "StrengthScore");
+                strScore.Value = Person.StrengthScore;
                 dexScore.DataBindings.Add("Value", Person, "DexterityScore");
+                dexScore.Value = Person.DexterityScore;
                 conScore.DataBindings.Add("Value", Person, "ConstitutionScore");
+                conScore.Value = Person.ConstitutionScore;
                 intScore.DataBindings.Add("Value", Person, "IntelligenceScore");
+                intScore.Value = Person.IntelligenceScore;
                 wisScore.DataBindings.Add("Value", Person, "WisdomScore");
+                wisScore.Value = Person.WisdomScore;
                 chaScore.DataBindings.Add("Value", Person, "CharismaScore");
+                chaScore.Value = Person.CharismaScore;
 
                 var scoreList = Controls.OfType<NumericUpDown>().Where(n => n.Name.ToLower().Contains("score")).ToList();
                 scoreList.ForEach(score =>
@@ -124,8 +130,8 @@ namespace CampaignGUI.Forms.PersonEditor
 
                 foreach (var prof in Person.Proficiencies)
                 {
-                    var checkbox = list.Where(l => prof.Name.ToLower().Trim().Contains(l.Name.ToLower())).FirstOrDefault();
-                    var numeric = list2.Where(l => prof.Name.Substring(0, prof.Name.Length - 6).ToLower() + "Mod" == l.Name).FirstOrDefault();
+                    var checkbox = list.Where(l => prof.Name.ToLower().Replace(" ", "").Contains(l.Name.ToLower())).FirstOrDefault();
+                    var numeric = list2.Where(l => prof.Name.Substring(0, prof.Name.Length - 6).Replace(" ", "").ToLower() + "mod" == l.Name.ToLower()).FirstOrDefault();
                     if (checkbox != null)
                         checkbox.Checked = prof.Proficient;
                     if (numeric != null)
@@ -165,6 +171,13 @@ namespace CampaignGUI.Forms.PersonEditor
                     list2.ForEach(item =>
                     {
                         item.Enabled = false;
+                    });
+                }
+                else
+                {
+                    list2.ForEach(item =>
+                    {
+                        item.Enabled = true;
                     });
                 }
             }
@@ -207,34 +220,45 @@ namespace CampaignGUI.Forms.PersonEditor
 
         private void score_Changed(object sender, EventArgs e)
         {
-            NumericUpDown ele = sender as NumericUpDown;
-            int oldMod = 0;
-            string eleName = ele.Name.Substring(0, 3) + "Mod";
-            var mod = Controls.OfType<TextBox>().Where(n => n.Name == eleName).FirstOrDefault();
-            oldMod = int.Parse(mod.Text);
-            if (mod != null)
+            try
             {
-                mod.Text = CalculateModifier((double)ele.Value).ToString();
-            }
-            var score = _stats.Where(s => s.Acroynm.ToLower() == ele.Name.Substring(0, 3)).First();
-            var list = Controls.OfType<CheckBox>().Where(l => l.Text.ToLower().Contains(score.Acroynm)).ToList();
-
-            var list2 = Controls.OfType<NumericUpDown>().Where(n => n.Name.Contains("Mod")).ToList();
-            list.ForEach(item =>
-            {
-                NumericUpDown num =  list2.Where(n => n.Name.ToLower().Substring(0, n.Name.Length - 3) == item.Name.ToLower()).FirstOrDefault();
-                num.ValueChanged -= new EventHandler(proficiency_Changed);
-                num.Value -= oldMod;
-                num.Value += int.Parse(mod.Text);
-                num.ValueChanged += new EventHandler(proficiency_Changed);
                 if (!Person.OverrideCalculations)
                 {
-                    var name = num.Name.Substring(0, num.Name.Length - 3);
-                    var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name));
-                    if (index != -1)
-                        proficienciesList[index].Value = (int)ele.Value;
+                    NumericUpDown ele = sender as NumericUpDown;
+                    int oldMod = 0;
+                    string eleName = ele.Name.Substring(0, 3) + "Mod";
+                    var mod = Controls.OfType<TextBox>().Where(n => n.Name == eleName).FirstOrDefault();
+                    oldMod = int.Parse(mod.Text);
+                    if (mod != null)
+                    {
+                        mod.Text = CalculateModifier((double)ele.Value).ToString();
+                    }
+                    var score = _stats.Where(s => s.Acroynm.ToLower() == ele.Name.Substring(0, 3)).First();
+                    var list = Controls.OfType<CheckBox>().Where(l => l.Text.ToLower().Contains(score.Acroynm)).ToList();
+
+                    var list2 = Controls.OfType<NumericUpDown>().Where(n => n.Name.Contains("Mod")).ToList();
+                    list.ForEach(item =>
+                    {
+                        NumericUpDown num = list2.Where(n => n.Name.ToLower().Substring(0, n.Name.Length - 3) == item.Name.ToLower()).FirstOrDefault();
+                        num.ValueChanged -= new EventHandler(proficiency_Changed);
+                        var value = 0;
+                        if (item.Checked)
+                            value += Person.ProficiencyBonus;
+                        value += int.Parse(mod.Text);
+                        num.Value = value;
+                        num.ValueChanged += new EventHandler(proficiency_Changed);
+                        
+                        var name = num.Name.Substring(0, num.Name.Length - 3);
+                        var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name.ToLower()));
+                        if (index != -1)
+                            proficienciesList[index].Value = int.Parse(mod.Text);                        
+                    });
                 }
-            });
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private int CalculateModifier(double score)
