@@ -159,6 +159,14 @@ namespace CampaignGUI.Forms.PersonEditor
                     Passives[1] = Person.Passives[1];
                     Passives[2] = Person.Passives[2];
                 }
+
+                if(!Person.OverrideCalculations)
+                {
+                    list2.ForEach(item =>
+                    {
+                        item.Enabled = false;
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -178,16 +186,23 @@ namespace CampaignGUI.Forms.PersonEditor
 
         private void proficiency_Changed(object sender, EventArgs e)
         {
-            //var ele = sender as NumericUpDown;
-            //var name = ele.Name.Substring(0, ele.Name.Length - 3);
-            //var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name));
-            //if(index != -1)
-            //    proficienciesList[index].Value = (int)ele.Value;
+            if (Person.OverrideCalculations)
+            {
+                var ele = sender as NumericUpDown;
+                var name = ele.Name.Substring(0, ele.Name.Length - 3);
+                var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name));
+                if (index != -1)
+                    proficienciesList[index].Value = (int)ele.Value;
+            }
         }
 
         private void overrideMods_CheckedChanged(object sender, EventArgs e)
         {
-
+            var list2 = Controls.OfType<NumericUpDown>().Where(p => p.Name.Contains("Mod")).ToList();
+            list2.ForEach(item =>
+            {
+                item.Enabled = !item.Enabled;
+            });
         }
 
         private void score_Changed(object sender, EventArgs e)
@@ -208,8 +223,17 @@ namespace CampaignGUI.Forms.PersonEditor
             list.ForEach(item =>
             {
                 NumericUpDown num =  list2.Where(n => n.Name.ToLower().Substring(0, n.Name.Length - 3) == item.Name.ToLower()).FirstOrDefault();
+                num.ValueChanged -= new EventHandler(proficiency_Changed);
                 num.Value -= oldMod;
                 num.Value += int.Parse(mod.Text);
+                num.ValueChanged += new EventHandler(proficiency_Changed);
+                if (!Person.OverrideCalculations)
+                {
+                    var name = num.Name.Substring(0, num.Name.Length - 3);
+                    var index = proficienciesList.FindIndex(p => p.Name.ToLower().Replace(" ", "").Contains(name));
+                    if (index != -1)
+                        proficienciesList[index].Value = (int)ele.Value;
+                }
             });
         }
 
@@ -246,6 +270,36 @@ namespace CampaignGUI.Forms.PersonEditor
                 }
                 proficienciesList[index] = prof;
             }
+        }
+
+        private void dexMod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void strMod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void conMod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void intMod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void wisMod_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chaMod_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

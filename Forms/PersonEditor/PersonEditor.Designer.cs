@@ -635,45 +635,57 @@ namespace CampaignGUI.Forms.PersonEditor
             // 
             // strMod
             // 
+            this.strMod.Enabled = false;
             this.strMod.Location = new System.Drawing.Point(26, 245);
             this.strMod.Name = "strMod";
             this.strMod.Size = new System.Drawing.Size(57, 20);
             this.strMod.TabIndex = 46;
+            this.strMod.TextChanged += new System.EventHandler(this.strMod_TextChanged);
             // 
             // dexMod
             // 
+            this.dexMod.Enabled = false;
             this.dexMod.Location = new System.Drawing.Point(97, 244);
             this.dexMod.Name = "dexMod";
             this.dexMod.Size = new System.Drawing.Size(57, 20);
             this.dexMod.TabIndex = 47;
+            this.dexMod.TextChanged += new System.EventHandler(this.dexMod_TextChanged);
             // 
             // conMod
             // 
+            this.conMod.Enabled = false;
             this.conMod.Location = new System.Drawing.Point(170, 244);
             this.conMod.Name = "conMod";
             this.conMod.Size = new System.Drawing.Size(57, 20);
             this.conMod.TabIndex = 48;
+            this.conMod.TextChanged += new System.EventHandler(this.conMod_TextChanged);
             // 
             // wisMod
             // 
+            this.wisMod.Enabled = false;
             this.wisMod.Location = new System.Drawing.Point(311, 244);
             this.wisMod.Name = "wisMod";
             this.wisMod.Size = new System.Drawing.Size(57, 20);
             this.wisMod.TabIndex = 49;
+            this.wisMod.TextChanged += new System.EventHandler(this.wisMod_TextChanged);
             // 
             // intMod
             // 
+            this.intMod.Enabled = false;
             this.intMod.Location = new System.Drawing.Point(239, 245);
             this.intMod.Name = "intMod";
             this.intMod.Size = new System.Drawing.Size(57, 20);
             this.intMod.TabIndex = 50;
+            this.intMod.TextChanged += new System.EventHandler(this.intMod_TextChanged);
             // 
             // chaMod
             // 
+            this.chaMod.Enabled = false;
             this.chaMod.Location = new System.Drawing.Point(386, 244);
             this.chaMod.Name = "chaMod";
             this.chaMod.Size = new System.Drawing.Size(57, 20);
             this.chaMod.TabIndex = 51;
+            this.chaMod.TextChanged += new System.EventHandler(this.chaMod_TextChanged);
             // 
             // strSave
             // 

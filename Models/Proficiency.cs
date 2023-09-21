@@ -12,5 +12,6 @@ namespace CampaignGUI.Models
         public bool Proficient { get; set; }
         public string Stat { get; set; }
         public int Value { get; set; }
+        public bool Overriden { get; set; }
     }
 }
