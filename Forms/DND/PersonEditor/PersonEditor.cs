@@ -182,6 +182,11 @@ namespace CampaignGUI.Forms.DND.PersonEditor
                     Speeds[0] = Person.Speeds[0];
                     Speeds[1] = Person.Speeds[1];
                     Speeds[2] = Person.Speeds[2];
+
+                    var list3 = Controls.OfType<NumericUpDown>().Where(t => t.Name.Contains("Speed")).ToList();
+                    list3.Where(l => l.Name.Contains("flying")).FirstOrDefault().Value = Speeds[0];
+                    list3.Where(l => l.Name.Contains("walk")).FirstOrDefault().Value = Speeds[1];
+                    list3.Where(l => l.Name.Contains("swim")).FirstOrDefault().Value = Speeds[2];
                 }
 
                 if (Person.Passives != null)
@@ -423,19 +428,19 @@ namespace CampaignGUI.Forms.DND.PersonEditor
         private void flyingSpeed_ValueChanged(object sender, EventArgs e)
         {
             var ele = sender as NumericUpDown;
-            Person.Speeds[0] = (int)ele.Value;
+            Speeds[0] = (int)ele.Value;
         }
 
         private void walkSpeed_ValueChanged(object sender, EventArgs e)
         {
             var ele = sender as NumericUpDown;
-            Person.Speeds[1] = (int)ele.Value;
+            Speeds[1] = (int)ele.Value;
         }
 
         private void swimSpeed_ValueChanged(object sender, EventArgs e)
         {
             var ele = sender as NumericUpDown;
-            Person.Speeds[2] = (int)ele.Value;
+            Speeds[2] = (int)ele.Value;
         }
     }
 }
